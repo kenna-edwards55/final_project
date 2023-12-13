@@ -1,15 +1,12 @@
 package com.example.final_project
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.example.final_project.databinding.FragmentUserScreenBinding
 //import com.example.project7.databinding.FragmentUserScreenBinding
 
@@ -18,7 +15,7 @@ import com.example.final_project.databinding.FragmentUserScreenBinding
  */
 class UserScreenFragment : Fragment() {
 
-    val viewModel : NotesViewModel by activityViewModels()
+    val viewModel : OrdersViewModel by activityViewModels()
 
     private var _binding: FragmentUserScreenBinding? = null
     private val binding get() = _binding!!

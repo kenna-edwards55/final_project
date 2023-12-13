@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 
 /**
  * Similar to a loading screen.
- * Will navigate either immediately to the list of notes or the sign in screen, depending on user's auth status.
+ * Will navigate either immediately to the list of orders or the sign in screen, depending on user's auth status.
  */
 class SplashFragment : Fragment() {
-    val viewModel : NotesViewModel by activityViewModels()
+    val viewModel : OrdersViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,10 +35,10 @@ class SplashFragment : Fragment() {
          * Checks the current user's authentication status and navigates accordingly after a delay.
          *
          * It retrieves the current user using [viewModel.getCurrentUser]. If a user is authenticated,
-         * it initializes the database reference, sets the [viewModel.loggedIn] flag to true, and navigates to the notes screen.
+         * it initializes the database reference, sets the [viewModel.loggedIn] flag to true, and navigates to the orders screen.
          * If no user is authenticated, it sets the [viewModel.loggedIn] flag to false and navigates to the sign-in screen.
          *
-         * @param viewModel The NotesViewModel to interact with the user authentication and navigation.
+         * @param viewModel The OrdersViewModel to interact with the user authentication and navigation.
          */
 
         val currentUser = viewModel.getCurrentUser()
@@ -49,7 +48,7 @@ class SplashFragment : Fragment() {
             if (currentUser != null) {
                 viewModel.initializeTheDatabaseReference()
                 viewModel.loggedIn.value = true
-//                this.findNavController().navigate(R.id.action_splashFragment_to_notesFragment)
+//                this.findNavController().navigate(R.id.action_splashFragment_to_ordersFragment)
             }
             else {
                 viewModel.loggedIn.value = false

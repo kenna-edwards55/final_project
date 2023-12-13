@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import com.example.final_project.databinding.FragmentSignInBinding
-//import com.example.project7.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
     val TAG = "SignInFragment"
@@ -34,22 +32,22 @@ class SignInFragment : Fragment() {
         val TAG = "SignInFragment"
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
         val view = binding.root
-        val viewModel : NotesViewModel by activityViewModels()
+        val viewModel : OrdersViewModel by activityViewModels()
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
 
         /**
-         * Observes the navigation trigger to the list of notes and handles the navigation.
+         * Observes the navigation trigger to the list of orders and handles the navigation.
          *
-         * When the [navigate] flag is set to true, it navigates to the list of notes (NotesFragment).
-         * Additionally, it calls [NotesViewModel.onNavigatedToList] to perform post-navigation actions.
+         * When the [navigate] flag is set to true, it navigates to the list of orders (OrdersFragment).
+         * Additionally, it calls [OrdersViewModel.onNavigatedToList] to perform post-navigation actions.
          */
         viewModel.navigateToList.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {
-                Log.d(TAG, "Navigating to the list of notes.")
+                Log.d(TAG, "Navigating to the list of orders.")
 //                view.findNavController()
-//                    .navigate(R.id.action_signInFragment_to_notesFragment)
+//                    .navigate(R.id.action_signInFragment_to_ordersFragment)
                 viewModel.onNavigatedToList()
             }
         })
@@ -58,7 +56,7 @@ class SignInFragment : Fragment() {
          * Observes the navigation trigger to the sign-up screen and handles the navigation.
          *
          * When the [navigate] flag is set to true, it navigates to the sign-up screen (SignUpFragment).
-         * Additionally, it calls [NotesViewModel.onNavigatedToSignUp] to perform post-navigation actions.
+         * Additionally, it calls [OrdersViewModel.onNavigatedToSignUp] to perform post-navigation actions.
          */
         viewModel.navigateToSignUp.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {

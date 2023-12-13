@@ -1,7 +1,6 @@
 package com.example.final_project
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import com.example.final_project.databinding.FragmentSignUpBinding
 //import com.example.project7.databinding.FragmentSignUpBinding
 
@@ -38,7 +36,7 @@ class SignUpFragment : Fragment() {
     ): View? {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         val view = binding.root
-        val viewModel : NotesViewModel by activityViewModels()
+        val viewModel : OrdersViewModel by activityViewModels()
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -47,7 +45,7 @@ class SignUpFragment : Fragment() {
          * Observes the navigation trigger to the sign-in screen and handles the navigation.
          *
          * When the [navigate] flag is set to true, it navigates to the sign-up screen (SignInFragment).
-         * Additionally, it calls [NotesViewModel.onNavigatedToSignIn] to perform post-navigation actions.
+         * Additionally, it calls [OrdersViewModel.onNavigatedToSignIn] to perform post-navigation actions.
          */
         viewModel.navigateToSignIn.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {

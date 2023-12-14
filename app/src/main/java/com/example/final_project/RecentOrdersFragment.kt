@@ -41,7 +41,7 @@ class RecentOrdersFragment : Fragment()   {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val toolbar = binding.ordersToolbar
+//        val toolbar = binding.ordersToolbar
 //        toolbar.inflateMenu(R.menu.menu_main_activity)
 
         /**

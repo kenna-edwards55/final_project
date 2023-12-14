@@ -1,8 +1,9 @@
-
 <?xml version="1.0" encoding="utf-8"?>
+<!--TODO delete or fix-->
 <androidx.appcompat.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
@@ -10,9 +11,18 @@
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <ImageView
-        android:id="@+id/burgerIcon"
+        android:id="@+id/burger_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/hamburger"
         android:onClick="toggleDrawer"/>
+
+    <ImageView
+        android:id="@+id/search_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="right"
+        android:layout_margin="20dp"
+        android:src="@drawable/search_icon"
+        android:onClick="search"/>
 </androidx.appcompat.widget.Toolbar>

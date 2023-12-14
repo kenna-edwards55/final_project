@@ -16,4 +16,6 @@
     <string name="sign_in">Sign In</string>
     <string name="not_registered">Not Registered Yet?</string>
     <string name="t_and_c">By proceeding you also agree to our Terms of Service and Privacy Policy.</string>
+    <string name="navigation_drawer_open">true</string>
+    <string name="navigation_drawer_close">false</string>
 </resources>

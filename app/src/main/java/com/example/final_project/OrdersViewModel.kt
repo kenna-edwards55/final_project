@@ -33,7 +33,7 @@ class OrdersViewModel() : ViewModel() {
      * [verifyPassword]: String - Password verification for user registration.
      */
     var user: User = User()
-    var verifyPassword = ""
+    var verifyPassword = "testing123"
 
     /**
      * Unique identifier for the currently edited order.
@@ -233,11 +233,11 @@ class OrdersViewModel() : ViewModel() {
      * If the sign-in fails, an error message is displayed.
      */
     fun signIn() {
-        if (user.email.isEmpty() || user.name.isEmpty()) {
+        if (user.email.isEmpty() ) { //|| user.password.isEmpty()
             _errorHappened.value = "Email and password cannot be empty."
             return
         }
-        auth.signInWithEmailAndPassword(user.email, user.name).addOnCompleteListener {
+        auth.signInWithEmailAndPassword(user.email, user.password).addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d(TAG, "Login was successful")
                 initializeTheDatabaseReference()
@@ -261,15 +261,15 @@ class OrdersViewModel() : ViewModel() {
      */
     //TODO change things related to password
     fun signUp() {
-        if (user.email.isEmpty() || user.name.isEmpty()) {
+        if (user.email.isEmpty() || user.password.isEmpty()) {
             _errorHappened.value = "Email and password cannot be empty."
             return
         }
-        if (user.name != verifyPassword) {
+        if (user.password != verifyPassword) {
             _errorHappened.value = "Password and verify do not match."
             return
         }
-        auth.createUserWithEmailAndPassword(user.email, user.name).addOnCompleteListener {
+        auth.createUserWithEmailAndPassword(user.email, user.password).addOnCompleteListener {
             if (it.isSuccessful) {
                 _navigateToSignIn.value = true
             } else {

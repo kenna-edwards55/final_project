@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.example.final_project.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
@@ -45,9 +46,9 @@ class SignInFragment : Fragment() {
          */
         viewModel.navigateToList.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {
-                Log.d(TAG, "Navigating to the list of orders.")
-//                view.findNavController()
-//                    .navigate(R.id.action_signInFragment_to_ordersFragment)
+                Log.d(TAG, "Navigating to the home screen.")
+                view.findNavController()
+                    .navigate(R.id.action_signInFragment_to_homeScreenFragment)
                 viewModel.onNavigatedToList()
             }
         })
@@ -61,8 +62,8 @@ class SignInFragment : Fragment() {
         viewModel.navigateToSignUp.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {
                 Log.d(TAG, "Navigating to the sign up screen.")
-//                view.findNavController()
-//                    .navigate(R.id.action_signInFragment_to_signUpFragment)
+                view.findNavController()
+                    .navigate(R.id.action_signInFragment_to_signUpFragment)
                 viewModel.onNavigatedToSignUp()
             }
         })

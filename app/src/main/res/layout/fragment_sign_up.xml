@@ -43,7 +43,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/cardView1"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:clickable="true"/>
 
         <TextView
@@ -93,7 +93,7 @@
                     android:layout_height="50dp"
                     android:background="@color/white"
                     android:hint="@string/enter_your_email"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:paddingStart="12dp"
                     android:paddingTop="15dp"
                     android:text="@={viewModel.user.name}"/>
@@ -121,8 +121,7 @@
                 android:background="@color/white"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
-                app:hintEnabled="false"
-                app:passwordToggleEnabled="true">
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_box"
@@ -130,7 +129,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:hint="@string/enter_your_pass"
-                    android:inputType="textPassword"
+                    android:inputType="textEmailAddress"
                     android:paddingStart="12dp"
                     android:paddingTop="15dp"
                     android:text="@={viewModel.user.email}"/>
@@ -139,6 +138,84 @@
 
 
         </com.google.android.material.card.MaterialCardView>
+
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:id="@+id/cardView3"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="16dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            app:cardCornerRadius="8dp"-->
+<!--            app:cardElevation="8dp"-->
+<!--            app:cardUseCompatPadding="true"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/cardView1">-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="@color/white"-->
+<!--                app:boxStrokeWidth="0dp"-->
+<!--                app:boxStrokeWidthFocused="0dp"-->
+<!--                app:hintEnabled="false">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/passEt"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:hint="@string/enter_your_pass"-->
+<!--                    android:inputType="textEmailAddress"-->
+<!--                    android:paddingStart="12dp"-->
+<!--                    android:paddingTop="15dp"-->
+<!--                    android:text="@={viewModel.user.password}"/>-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        </com.google.android.material.card.MaterialCardView>-->
+
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:id="@+id/cardView4"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="16dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            app:cardCornerRadius="8dp"-->
+<!--            app:cardElevation="8dp"-->
+<!--            app:cardUseCompatPadding="true"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/cardView2">-->
+
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="@color/white"-->
+<!--                app:boxStrokeWidth="0dp"-->
+<!--                app:boxStrokeWidthFocused="0dp"-->
+<!--                app:hintEnabled="false"-->
+<!--                app:passwordToggleEnabled="true">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/verifyPassEt"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:hint="@string/re_enter_your_pass"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:paddingStart="12dp"-->
+<!--                    android:paddingTop="15dp"-->
+<!--                    android:text="@={viewModel.verifyPassword}"/>-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+<!--        </com.google.android.material.card.MaterialCardView>-->
+
+
 
         <TextView
             android:id="@+id/termsAndConditionsTextView"

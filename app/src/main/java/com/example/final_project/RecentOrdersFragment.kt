@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.example.final_project.databinding.FragmentOrdersBinding
+//import com.example.final_project.databinding.FragmentOrdersBinding
+import com.example.final_project.databinding.FragmentRecentOrdersBinding
 
 /**
  * A fragment for displaying a list of orders.
@@ -19,7 +20,7 @@ class RecentOrdersFragment : Fragment()   {
     /**
      * View binding for the RecentOrdersFragment
      */
-    private var _binding: FragmentOrdersBinding? = null
+    private var _binding: FragmentRecentOrdersBinding? = null
     private val binding get() = _binding!!
 
     /**
@@ -34,7 +35,7 @@ class RecentOrdersFragment : Fragment()   {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentOrdersBinding.inflate(inflater, container, false)
+        _binding = FragmentRecentOrdersBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewModel : OrdersViewModel by activityViewModels()
         binding.viewModel = viewModel

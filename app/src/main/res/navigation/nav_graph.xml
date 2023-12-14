@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.final_project.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.final_project.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.final_project.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeScreenFragment"
+        android:name="com.example.final_project.HomeScreenFragment"
+        android:label="fragment_note_screen"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_recentOrdersFragment"
+            app:destination="@id/recentOrdersFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_restaurantScreenFragment"
+            app:destination="@id/restaurantScreenFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_calendarScreenFragment"
+            app:destination="@id/calendarScreenFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recentOrdersFragment"
+        android:name="com.example.final_project.RecentOrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_recent_orders" >
+        <action
+            android:id="@+id/action_recentOrdersFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendarScreenFragment"
+        android:name="com.example.final_project.CalendarScreenFragment"
+        android:label="fragment_calendar_screen"
+        tools:layout="@layout/fragment_calendar_screen" >
+        <action
+            android:id="@+id/action_calendarScreenFragment_to_recentOrdersFragment"
+            app:destination="@id/recentOrdersFragment" />
+        <action
+            android:id="@+id/action_calendarScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/restaurantScreenFragment"
+        android:name="com.example.final_project.RestaurantScreenFragment"
+        android:label="fragment_restaurant_screen"
+        tools:layout="@layout/fragment_restaurant_screen" >
+        <action
+            android:id="@+id/action_restaurantScreenFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+        <action
+            android:id="@+id/action_restaurantScreenFragment_to_recentOrdersFragment"
+            app:destination="@id/recentOrdersFragment" />
+        <action
+            android:id="@+id/action_restaurantScreenFragment_to_checkoutScreenFragment"
+            app:destination="@id/checkoutScreenFragment" />
+        <action
+            android:id="@+id/action_restaurantScreenFragment_to_calendarScreenFragment"
+            app:destination="@id/calendarScreenFragment" />
+        <action
+            android:id="@+id/action_restaurantScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutScreenFragment"
+        android:name="com.example.final_project.CheckoutScreenFragment"
+        android:label="fragment_checkout_screen"
+        tools:layout="@layout/fragment_checkout_screen" >
+        <action
+            android:id="@+id/action_checkoutScreenFragment_to_orderScreenFragment"
+            app:destination="@id/orderScreenFragment" />
+        <action
+            android:id="@+id/action_checkoutScreenFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+        <action
+            android:id="@+id/action_checkoutScreenFragment_to_recentOrdersFragment"
+            app:destination="@id/recentOrdersFragment" />
+        <action
+            android:id="@+id/action_checkoutScreenFragment_to_calendarScreenFragment"
+            app:destination="@id/calendarScreenFragment" />
+        <action
+            android:id="@+id/action_checkoutScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderScreenFragment"
+        android:name="com.example.final_project.OrderScreenFragment"
+        android:label="fragment_order_screen"
+        tools:layout="@layout/fragment_order_screen" >
+        <action
+            android:id="@+id/action_orderScreenFragment_to_mapScreenFragment"
+            app:destination="@id/mapScreenFragment" />
+        <action
+            android:id="@+id/action_orderScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapScreenFragment"
+        android:name="com.example.final_project.MapScreenFragment"
+        android:label="fragment_map_screen"
+        tools:layout="@layout/fragment_map_screen" >
+        <action
+            android:id="@+id/action_mapScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+</navigation>

@@ -7,6 +7,6 @@ package com.example.final_project
  * @property password The user's password.
  */
 data class User(
-    var email: String = "",
-    var password: String = ""
+    var name: String = "",
+    var email: String = ""
 )

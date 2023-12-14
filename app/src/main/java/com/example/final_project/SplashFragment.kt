@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 
 /**
  * Similar to a loading screen.
@@ -48,11 +49,11 @@ class SplashFragment : Fragment() {
             if (currentUser != null) {
                 viewModel.initializeTheDatabaseReference()
                 viewModel.loggedIn.value = true
-//                this.findNavController().navigate(R.id.action_splashFragment_to_ordersFragment)
+                this.findNavController().navigate(R.id.action_splashFragment_to_homeScreenFragment)
             }
             else {
                 viewModel.loggedIn.value = false
-//                this.findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
+                this.findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
             }
 
         }, 2000)

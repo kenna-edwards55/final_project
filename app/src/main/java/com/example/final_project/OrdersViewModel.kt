@@ -16,7 +16,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 
 /**
- * ViewModel class for managing orders and navigation in the OrdersFragment.
+ * ViewModel class for managing orders and navigation in the RecentOrdersFragment.
  *
  */
 
@@ -233,11 +233,11 @@ class OrdersViewModel() : ViewModel() {
      * If the sign-in fails, an error message is displayed.
      */
     fun signIn() {
-        if (user.email.isEmpty() || user.password.isEmpty()) {
+        if (user.email.isEmpty() || user.name.isEmpty()) {
             _errorHappened.value = "Email and password cannot be empty."
             return
         }
-        auth.signInWithEmailAndPassword(user.email, user.password).addOnCompleteListener {
+        auth.signInWithEmailAndPassword(user.email, user.name).addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d(TAG, "Login was successful")
                 initializeTheDatabaseReference()
@@ -250,6 +250,8 @@ class OrdersViewModel() : ViewModel() {
         }
     }
 
+
+
     /**
      * Attempts to sign up the user with the provided email and password.
      *
@@ -257,16 +259,17 @@ class OrdersViewModel() : ViewModel() {
      * an error message is displayed. If the sign-up is successful, navigation to the sign-in screen is initiated.
      * If the sign-up fails, an error message is shown.
      */
+    //TODO change things related to password
     fun signUp() {
-        if (user.email.isEmpty() || user.password.isEmpty()) {
+        if (user.email.isEmpty() || user.name.isEmpty()) {
             _errorHappened.value = "Email and password cannot be empty."
             return
         }
-        if (user.password != verifyPassword) {
+        if (user.name != verifyPassword) {
             _errorHappened.value = "Password and verify do not match."
             return
         }
-        auth.createUserWithEmailAndPassword(user.email, user.password).addOnCompleteListener {
+        auth.createUserWithEmailAndPassword(user.email, user.name).addOnCompleteListener {
             if (it.isSuccessful) {
                 _navigateToSignIn.value = true
             } else {

@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">Zippy Food Delivery</string>
+    <string name="app_name">Zippy Delivery</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete_confirmation">Are you sure you want to delete the note?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="enter_your_email">Name</string>
+    <string name="enter_your_pass">Email</string>
+    <string name="re_enter_your_pass">Re-enter Your Password .....</string>
+    <string name="toolbar_title_main">Notes</string>
+    <string name="toolbar_title_edit">Edit Note</string>
+    <string name="hint">Enter a note name</string>
+    <string name="note_description">Description</string>
+    <string name="save_btn">SAVE</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="not_registered">Not Registered Yet?</string>
+    <string name="t_and_c">By proceeding you also agree to our Terms of Service and Privacy Policy.</string>
 </resources>

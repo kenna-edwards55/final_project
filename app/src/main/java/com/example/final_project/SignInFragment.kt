@@ -40,7 +40,7 @@ class SignInFragment : Fragment() {
         /**
          * Observes the navigation trigger to the list of orders and handles the navigation.
          *
-         * When the [navigate] flag is set to true, it navigates to the list of orders (OrdersFragment).
+         * When the [navigate] flag is set to true, it navigates to the list of orders (RecentOrdersFragment).
          * Additionally, it calls [OrdersViewModel.onNavigatedToList] to perform post-navigation actions.
          */
         viewModel.navigateToList.observe(viewLifecycleOwner, Observer { navigate ->

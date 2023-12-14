@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.final_project.databinding.FragmentUserScreenBinding
-//import com.example.project7.databinding.FragmentUserScreenBinding
+//import com.example.final_project.databinding.FragmentUserScreenBinding
 
 /**
  * A fragment for user-related actions, including sign-in, sign-up, and sign-out.

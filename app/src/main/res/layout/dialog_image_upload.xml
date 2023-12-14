@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.final_project.OrdersViewModel" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/textViewChooseOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose option"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/textViewEnableAccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable access so you can take photos"
+        android:paddingBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnChooseFromGallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose from gallery"
+        android:onClick="chooseFromGallery"/>
+
+    <Button
+        android:id="@+id/btnCamera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Camera"
+        android:onClick="openCamera"/>
+
+</LinearLayout>
+</layout>

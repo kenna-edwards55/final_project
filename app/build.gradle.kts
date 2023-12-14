@@ -52,6 +52,7 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-auth:22.2.0")
     implementation("com.google.firebase:firebase-analytics:21.5.0")
+    implementation("com.google.firebase:firebase-firestore:24.10.0")
     val lifecycle_version = "2.3.1"
     val room_version = "2.4.1"
     // Import the BoM for the Firebase platform

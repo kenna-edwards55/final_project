@@ -10,7 +10,7 @@
             name="viewModel"
             type="com.example.final_project.OrdersViewModel" />
         <variable
-            name="orderItemsAdapter"
+            name="menuItemsAdapter"
             type="com.example.final_project.MenuItemAdapter" />
     </data>
 
@@ -49,28 +49,52 @@
 
                 <!-- Iterate over the order.OrderItems list -->
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/menuItemsRecyclerView"
+                    android:id="@+id/menu_items_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:adapter="@{orderItemsAdapter}"/>
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </LinearLayout>
+<!--                                app:menuItemsAdapter="@{menuItemsAdapter}"-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Timestamp:"/>
+                <TextView
+                    android:id="@+id/timestampTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{order.timestamp.toString()}"
+                    android:padding="8dp"/>
+
             </LinearLayout>
 
-            <!-- Display date, time, and address -->
-            <TextView
-                android:id="@+id/timestampTV"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{order.timestamp.toString()}"
-                android:padding="8dp"/>
-            <TextView
-                android:id="@+id/addressTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{order.orderDeliveryAddress}"
-                android:padding="8dp"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address:"/>
+                <TextView
+                    android:id="@+id/addressTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{order.orderDeliveryAddress}"
+                    android:padding="8dp"/>
+
+            </LinearLayout>
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

@@ -1,4 +1,4 @@
-//package com.example.project9
+//package com.example.final_project
 //
 //import android.content.Context
 //import android.text.format.DateUtils
@@ -7,8 +7,8 @@
 //import androidx.recyclerview.widget.ListAdapter
 //import androidx.recyclerview.widget.RecyclerView
 //import com.bumptech.glide.Glide
-//import com.example.project9.databinding.PostItemBinding
-//import com.example.project9.model.Post
+//import com.example.final_project.databinding.FragmentRestaurantScreenBinding
+////import com.example.project9.model.Post
 //
 ///**
 // * Adapter for displaying a list of [Post] items in a RecyclerView.
@@ -82,3 +82,41 @@
 //        }
 //    }
 //}
+
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+
+
+class ImageAdapter(private val context: Context, private val imageList: List<String>) :
+    RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_image, parent, false)
+        return ImageViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+        val imageUrl = imageList[position]
+        holder.bind(imageUrl)
+    }
+
+    override fun getItemCount(): Int {
+        return imageList.size
+    }
+
+    inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(imageUrl: String) {
+            val storageReference = FirebaseStorage.getInstance().getReference(imageUrl)
+
+            Glide.with(context)
+                .using(FirebaseImageLoader())
+                .load(storageReference)
+                .into(itemView.imageView)
+        }
+    }
+}

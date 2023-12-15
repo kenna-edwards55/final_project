@@ -20,6 +20,9 @@ import com.example.final_project.databinding.FragmentHomeScreenBinding
 import com.example.final_project.databinding.NavHeaderBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class HomeScreenFragment : Fragment() {
@@ -87,14 +90,14 @@ class HomeScreenFragment : Fragment() {
         Log.d("HomeScreen", "trying to add the restaurants")
 
 // Create a new restaurant instance
-        val newRestaurant = Restaurant(
-            restaurantName = "taste_of_india",
-            restaurantDisplayName = "Taste of India",
-            imageUrls = listOf("https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_food.jpeg?alt=media&token=d4072fea-95d1-4197-a6f3-bb3bb352e7f8",
-                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_inside.jpeg?alt=media&token=c794d9dc-8f7a-4d23-8633-6278212edec9",
-                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_outside.jpeg?alt=media&token=92190b0f-7f6b-4cf3-9a08-0c0c45df1ea7"),
-            restaurantAddress = "316 E Fourth St Bloomington, IN 47408 United States"
-        )
+//        val newRestaurant = Restaurant(
+//            restaurantName = "taste_of_india",
+//            restaurantDisplayName = "Taste of India",
+//            imageUrls = listOf("https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_food.jpeg?alt=media&token=d4072fea-95d1-4197-a6f3-bb3bb352e7f8",
+//                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_inside.jpeg?alt=media&token=c794d9dc-8f7a-4d23-8633-6278212edec9",
+//                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_outside.jpeg?alt=media&token=92190b0f-7f6b-4cf3-9a08-0c0c45df1ea7"),
+//            restaurantAddress = "316 E Fourth St Bloomington, IN 47408 United States"
+//        )
 
         val order = Order(
             orderRestaurantName = "mcdonalds",
@@ -103,7 +106,15 @@ class HomeScreenFragment : Fragment() {
             orderSpecialInstructions = "BBQ sauce on the side"
         )
 
-        binding.viewModel?.addOrderToDatabase(order)
+        val currentTimestamp: Long = System.currentTimeMillis()
+
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val formattedTimestamp = dateFormat.format(Date(currentTimestamp))
+
+        Log.d("HomeScreen", "${formattedTimestamp}")
+
+
+//        binding.viewModel?.addOrderToDatabase(order)
 
 //        binding.viewModel?.addRestaurantToDatabase(newRestaurant)
 

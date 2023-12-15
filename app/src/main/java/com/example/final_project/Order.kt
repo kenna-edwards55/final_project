@@ -15,6 +15,7 @@ data class Order(
     @get:Exclude
     var orderId:String = "",
     var orderRestaurantName: String = "",
+    var orderImageCode: String = "",
     var orderItems: List<MenuItem>? = null,
     var orderDeliveryAddress: String = "",
     var orderSpecialInstructions: String = "",

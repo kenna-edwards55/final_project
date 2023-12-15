@@ -49,7 +49,8 @@ android {
 dependencies {
     implementation("com.google.firebase:firebase-database-ktx:20.2.2")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
-    implementation("com.firebaseui:firebase-ui-storage:7.2.2")
+
+    implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-auth:22.2.0")

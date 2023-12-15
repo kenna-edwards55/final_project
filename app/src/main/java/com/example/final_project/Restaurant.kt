@@ -1,7 +1,6 @@
 package com.example.final_project
 
 import com.google.firebase.database.Exclude
-import java.sql.Timestamp
 
 /**
  * Data class representing a Order in the Firebase database.
@@ -14,8 +13,8 @@ import java.sql.Timestamp
 data class Restaurant(
     @get:Exclude
     var restaurantId:String = "",
+    var restaurantImageCode: String = "",
     var restaurantName: String = "",
-    var restaurantDisplayName: String = "",
     var imageUrls: List<String>? = null,
     var restaurantAddress: String = "",
 )

@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="imageUrl"
-            type="String" />
+            name="image"
+            type="com.example.final_project.Image" />
         <variable
             name="viewModel"
             type="com.example.final_project.OrdersViewModel" />
@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{imageUrl}" />
+                app:imageUrl="@{image.imageUrl}" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

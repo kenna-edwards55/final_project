@@ -14,6 +14,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.toObject
+import com.google.firebase.firestore.toObjects
 import com.google.firebase.ktx.R
 
 /**
@@ -52,11 +56,6 @@ class OrdersViewModel() : ViewModel() {
     val currentUserData: LiveData<User>
         get() = _currentUserData
 
-    // Function to update the current user
-
-
-//    var currentUserName = MutableLiveData<String>()
-//    var currentUserEmail = MutableLiveData<String>()
 
     /**
      * Boolean that keeps track of when a user is logged in.  Affects which options are available in UserScreen
@@ -74,6 +73,13 @@ class OrdersViewModel() : ViewModel() {
     private val _orders: MutableLiveData<MutableList<Order>> = MutableLiveData()
     val orders: LiveData<List<Order>>
         get() = _orders as LiveData<List<Order>>
+
+    /**
+     * LiveData for posts
+     */
+    private val _images: MutableLiveData<MutableList<Image>> = MutableLiveData()
+    val images: LiveData<List<Image>>
+        get() = _images as LiveData<List<Image>>
 
 
     /**
@@ -166,6 +172,43 @@ class OrdersViewModel() : ViewModel() {
         }
         _orders.value = mutableListOf<Order>()
         _restaurants.value= mutableListOf<Restaurant>()
+
+        _images.value = mutableListOf<Image>()
+
+        val firestoreDB = FirebaseFirestore.getInstance()
+
+        /**
+         * Fetch the currently signed in user from Firestore
+         */
+        firestoreDB.collection("users")
+            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
+            .get()
+            .addOnSuccessListener { userSnapshot ->
+                user = userSnapshot.toObject<User>()!!
+                Log.i(TAG, "signed in user: $user")
+            }
+            .addOnFailureListener { exception ->
+                Log.i(TAG, "Failure fetching signed in user", exception)
+            }
+
+        /**
+         * Query posts from Firestore and listen for changes
+         */
+        var imagesReference = firestoreDB
+            .collection("images")
+            .limit(30)
+
+        imagesReference.addSnapshotListener { snapshot, exception ->
+            if (exception != null || snapshot == null) {
+                Log.e(TAG, "Exception when querying images", exception)
+                return@addSnapshotListener
+            }
+            val imageList = snapshot.toObjects<Image>()
+            _images.value = imageList as MutableList<Image>
+            for (image in imageList) {
+                Log.i(TAG, "Image ${image.fileName}")
+            }
+        }
     }
 
     /**

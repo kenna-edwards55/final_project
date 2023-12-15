@@ -92,6 +92,14 @@ class RestaurantScreenFragment : Fragment()   {
         binding.lifecycleOwner = viewLifecycleOwner
 
 
+        val orderImageCode = binding.viewModel.restaurant.value.restaurantImageCode // Replace with your actual orderImageCode
+        val filteredImageUrls = imageUrls.filter { it.contains(orderImageCode) }
+
+        val imageAdapter = ImageAdapter(this, filteredImageUrls, orderImageCode)
+        binding.recyclerView.adapter = imageAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
+
         drawerLayout = binding.drawerLayout
         navView = binding.navView
 

@@ -1,6 +1,7 @@
 package com.example.final_project
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,9 +14,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.final_project.databinding.FragmentHomeScreenBinding
+import com.example.final_project.databinding.NavHeaderBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class HomeScreenFragment : Fragment() {
@@ -39,6 +43,16 @@ class HomeScreenFragment : Fragment() {
         drawerLayout = binding.drawerLayout
         navView = binding.navView
 
+        //TODO fix getting the user's data
+//        val navHeaderBinding = NavHeaderBinding.inflate(inflater, binding.navView, false)
+
+        // Access the views in nav_header.xml
+//        navHeaderBinding.userNameTextView.text = viewModel.currentUserData.value!!.name
+//        navHeaderBinding.userEmailTextView.text = viewModel.currentUserData.value!!.email
+
+        // Set the inflated nav_header.xml to the header of the NavigationView
+//        binding.navView.addHeaderView(navHeaderBinding.root)
+
         val toolbar:Toolbar = binding.toolbar
 
         val toggle = ActionBarDrawerToggle(
@@ -52,10 +66,40 @@ class HomeScreenFragment : Fragment() {
         toggle.syncState()
 
         setupNavigation()
+        addTheRestaurants()
 
         setHasOptionsMenu(true) // Enable options menu handling
 
+
+//        viewModel.currentUserData.observe(viewLifecycleOwner, Observer { user ->
+//            navHeaderBinding.userNameTextView.text = viewModel.currentUserData.value?.name
+//            navHeaderBinding.userEmailTextView.text = viewModel.currentUserData.value?.email
+//            // Update UI with the new user data
+//            // user.email and user.name can be accessed here
+//        })
+
+
+
         return view
+    }
+
+    private fun addTheRestaurants() {
+        Log.d("HomeScreen", "trying to add the restaurants")
+
+// Create a new restaurant instance
+        val newRestaurant = Restaurant(
+            restaurantName = "chipotle",
+            restaurantDisplayName = "Chipotle",
+            imageUrls = listOf("https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/chipotle%2Fchipotle_food.jpeg?alt=media&token=897055dd-d085-4961-a9ec-f0a23d755cc0",
+                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/chipotle%2Fchipotle_front.jpeg?alt=media&token=7196baba-6b54-400f-bb5f-00373ae5b5da", "" +
+                        "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/chipotle%2Fchipotle_inside.jpeg?alt=media&token=9f4b8da3-fadd-4f4f-b562-b1b7abf48f3c"),
+            restaurantAddress = "420 E Kirkwood Ave Bloomington, IN  47408 United States"
+        )
+
+        binding.viewModel?.addRestaurantToDatabase(newRestaurant)
+        binding.viewModel?.addOrder()
+
+
     }
 
     private fun setupNavigation() {
@@ -81,24 +125,25 @@ class HomeScreenFragment : Fragment() {
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
+                R.id.nav_sign_out -> {
+                    // Handle Calendar View click
+                    // Example: navigate to CalendarViewFragment
+                    /**
+                     * Sets a click listener for the user sign-out button.
+                     *
+                     * When the user sign-out button is clicked, it updates the [viewModel.loggedIn] flag to false and
+                     * initiates the sign-out process through [viewModel.signOut].
+                     */
+                    binding.viewModel!!.loggedIn.value = false
+                    binding.viewModel!!.signOut()
+                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_signInFragment)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    return@setNavigationItemSelectedListener true
+                }
                 else -> return@setNavigationItemSelectedListener false
             }
         }
     }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            android.R.id.home -> {
-//                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-//                    drawerLayout.closeDrawer(GravityCompat.START)
-//                } else {
-//                    drawerLayout.openDrawer(GravityCompat.START)
-//                }
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {

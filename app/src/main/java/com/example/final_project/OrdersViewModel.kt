@@ -45,6 +45,18 @@ class OrdersViewModel() : ViewModel() {
      */
     private var currentUser = MutableLiveData<FirebaseUser?>()
 
+    private val _currentUserData = MutableLiveData<User>()
+
+    // Expose an immutable LiveData to the UI
+    val currentUserData: LiveData<User>
+        get() = _currentUserData
+
+    // Function to update the current user
+
+
+//    var currentUserName = MutableLiveData<String>()
+//    var currentUserEmail = MutableLiveData<String>()
+
     /**
      * Boolean that keeps track of when a user is logged in.  Affects which options are available in UserScreen
      */
@@ -106,6 +118,7 @@ class OrdersViewModel() : ViewModel() {
      * Keeps track of data changing within order objects and communicated with firebase realtime DB.
      */
     private lateinit var ordersCollection: DatabaseReference
+    private lateinit var restaurantsCollection: DatabaseReference
     private val database = Firebase.database
 
     init {
@@ -122,6 +135,9 @@ class OrdersViewModel() : ViewModel() {
     fun initializeTheDatabaseReference() {
         ordersCollection = database
             .getReference("orders")
+            .child(auth.currentUser!!.uid)
+        restaurantsCollection = database
+            .getReference("restaurants")
             .child(auth.currentUser!!.uid)
 
         ordersCollection.addValueEventListener(object : ValueEventListener {
@@ -141,7 +157,35 @@ class OrdersViewModel() : ViewModel() {
             }
         })
 
+        restaurantsCollection.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var restaurantsList: ArrayList<Restaurant> = ArrayList()
+                for (restaurantSnapshot in dataSnapshot.children) {
+                    var restaurant: Restaurant? = restaurantSnapshot.getValue<Restaurant>()
+                    restaurant?.restaurantId = restaurantSnapshot.key!!
+                    restaurantsList.add(restaurant!!)
+                }
+//                _orders.value = ordersList
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                // ...
+            }
+        })
     }
+
+
+//    val menuItemsAdapter = MutableLiveData<MenuItemAdapter>()
+
+    // ... other methods ...
+
+    // Update the adapter when needed
+//    fun updateOrderItemsAdapter(order: Order) {
+//        // Assuming OrderItemsAdapter is your RecyclerView adapter class
+//        val adapter = MenuItemAdapter(order.orderItems)
+//        menuItemsAdapter.value = adapter
+//    }
 
     /**
      * Adds a new, empty order to the database and navigates to the newly created order.
@@ -152,6 +196,27 @@ class OrdersViewModel() : ViewModel() {
         orderId = ""
         order.value = Order()
     }
+
+
+    fun addRestaurantToDatabase(newRestaurant: Restaurant) {
+        Log.d("ViewModel", "Inside add restaurant")
+
+        // Assuming restaurantsCollection is a DatabaseReference
+        restaurantsCollection.push().setValue(newRestaurant)
+            .addOnCompleteListener { task ->
+//                Log.d("Order View Model")
+                if (task.isSuccessful) {
+                    Log.d("View Model", "Restaurant added")
+                    // Restaurant added successfully
+                    // Handle success logic if needed
+                } else {
+                    Log.e("View Model", "Error adding restaurant: ${task.exception}")
+                    // Error adding restaurant
+                    // Handle failure logic if needed
+                }
+            }
+    }
+
 
     /**
      * Deletes a order with the specified order ID from the database.
@@ -188,6 +253,7 @@ class OrdersViewModel() : ViewModel() {
         }
         _navigateToList.value = true
     }
+
 
     /**
      * Handles a order item click event by setting the value of [navigateToOrder] LiveData.
@@ -242,6 +308,10 @@ class OrdersViewModel() : ViewModel() {
                 Log.d(TAG, "Login was successful")
                 initializeTheDatabaseReference()
                 currentUser.value = getCurrentUser()
+
+                updateUser(user)
+//                currentUserName.value = user.name
+//                currentUserEmail.value = user.email
                 loggedIn.value = true
                 _navigateToList.value = true
             } else {
@@ -285,6 +355,7 @@ class OrdersViewModel() : ViewModel() {
         auth.signOut()
         currentUser.value = null
         loggedIn.value = false
+
         _navigateToSignIn.value = true
     }
 
@@ -296,4 +367,10 @@ class OrdersViewModel() : ViewModel() {
     fun getCurrentUser(): FirebaseUser? {
         return auth.currentUser
     }
+
+    fun updateUser(user: User) {
+        _currentUserData.value = user
+    }
+
+
 }

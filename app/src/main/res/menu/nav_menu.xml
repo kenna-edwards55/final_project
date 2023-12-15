@@ -9,6 +9,10 @@
     <item
         android:id="@+id/nav_calendar_view"
         android:title="Calendar View" />
+    <item
+        android:id="@+id/nav_sign_out"
+        android:title="Sign Out" />
+
 </menu>
 
 <!-- android:icon="@drawable/ic_calendar"-->

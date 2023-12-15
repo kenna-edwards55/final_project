@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_calendarScreenFragment"
             app:destination="@id/calendarScreenFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
 
     <fragment

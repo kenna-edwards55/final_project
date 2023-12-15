@@ -4,7 +4,7 @@
 //import android.view.ViewGroup
 //import androidx.recyclerview.widget.ListAdapter
 //import androidx.recyclerview.widget.RecyclerView
-//import com.example.final_project.databinding.OrderItemBinding
+//import com.example.final_project.databinding.MenuItemBinding
 //
 ///**
 // * An adapter for displaying a list of orders in a RecyclerView.
@@ -12,8 +12,8 @@
 // * @param clickListener A lambda function to handle item click events.
 // * @param deleteClickListener A lambda function to handle item delete click events.
 // */
-//class OrderItemAdapter(val clickListener: (order: Order) -> Unit)
-//    : ListAdapter<Order, OrderItemAdapter.OrderItemViewHolder>(OrderDiffItemCallback()) {
+//class MenuItemAdapter(val clickListener: (menuItems: List<MenuItem>) -> Unit)
+//    : ListAdapter<MenuItem, MenuItemAdapter.MenuItemViewHolder>(MenuDiffItemCallback()) {
 //
 //    /**
 //     * Creates and returns a new OrderItemViewHolder for the RecyclerView.
@@ -23,7 +23,7 @@
 //     * @return A new OrderItemViewHolder.
 //     */
 //    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-//            : OrderItemViewHolder = OrderItemViewHolder.inflateFrom(parent)
+//            : MenuItemViewHolder = MenuItemViewHolder.inflateFrom(parent)
 //
 //    /**
 //     * Binds data to the ViewHolder at the specified position in the RecyclerView.
@@ -31,7 +31,7 @@
 //     * @param holder The ViewHolder to bind data to.
 //     * @param position The position of the item in the list.
 //     */
-//    override fun onBindViewHolder(holder: OrderItemViewHolder, position: Int) {
+//    override fun onBindViewHolder(holder: MenuItemViewHolder, position: Int) {
 //        val item = getItem(position)
 //        holder.bind(item, clickListener)
 //    }
@@ -41,20 +41,20 @@
 //     *
 //     * @param binding The data binding for the layout.
 //     */
-//    class OrderItemViewHolder(val binding: OrderItemBinding)
+//    class MenuItemViewHolder(val binding: MenuItemBinding)
 //        : RecyclerView.ViewHolder(binding.root) {
 //
 //        companion object {
 //            /**
-//            * Inflates a OrderItemViewHolder from the provided parent ViewGroup.
-//            *
-//            * @param parent The parent ViewGroup for inflating the ViewHolder.
-//            * @return A new OrderItemViewHolder.
-//            */
-//            fun inflateFrom(parent: ViewGroup): OrderItemViewHolder {
+//             * Inflates a OrderItemViewHolder from the provided parent ViewGroup.
+//             *
+//             * @param parent The parent ViewGroup for inflating the ViewHolder.
+//             * @return A new OrderItemViewHolder.
+//             */
+//            fun inflateFrom(parent: ViewGroup): MenuItemViewHolder {
 //                val layoutInflater = LayoutInflater.from(parent.context)
-//                val binding = OrderItemBinding.inflate(layoutInflater, parent, false)
-//                return OrderItemViewHolder(binding)
+//                val binding = MenuItemBinding.inflate(layoutInflater, parent, false)
+//                return MenuItemViewHolder(binding)
 //            }
 //        }
 //
@@ -65,13 +65,12 @@
 //         * @param clickListener A lambda function to handle item click events.
 //         * @param deleteClickListener A lambda function to handle item delete click events.
 //         */
-//        fun bind(item: Order, clickListener: (order: Order) -> Unit) {
-//            binding.order = item
+//        fun bind(item: MenuItem, clickListener: (menuItems: List<MenuItem>) -> Unit) {
+//            binding.menuItem = item
 //            binding.root.setOnClickListener { clickListener(item) }
 //        }
 //    }
 //}
-
 
 package com.example.final_project
 
@@ -79,27 +78,25 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.final_project.databinding.OrderItemBinding
+import com.example.final_project.databinding.MenuItemBinding
 
 /**
- * An adapter for displaying a list of orders in a RecyclerView.
+ * An adapter for displaying a list of menu items in a RecyclerView.
  *
  * @param clickListener A lambda function to handle item click events.
- * @param deleteClickListener A lambda function to handle item delete click events.
  */
-class OrderItemAdapter(val clickListener: (order: Order) -> Unit)
-    : ListAdapter<Order, OrderItemAdapter.OrderItemViewHolder>(OrderDiffItemCallback()) {
+class MenuItemAdapter(val clickListener: (menuItems: List<MenuItem>) -> Unit)
+    : ListAdapter<MenuItem, MenuItemAdapter.MenuItemViewHolder>(MenuDiffItemCallback()) {
 
     /**
-     * Creates and returns a new OrderItemViewHolder for the RecyclerView.
+     * Creates and returns a new MenuItemViewHolder for the RecyclerView.
      *
      * @param parent The parent ViewGroup in which the ViewHolder will be created.
      * @param viewType The type of the view.
-     * @return A new OrderItemViewHolder.
+     * @return A new MenuItemViewHolder.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-            : OrderItemViewHolder = OrderItemViewHolder.inflateFrom(parent)
+            : MenuItemViewHolder = MenuItemViewHolder.inflateFrom(parent)
 
     /**
      * Binds data to the ViewHolder at the specified position in the RecyclerView.
@@ -107,55 +104,42 @@ class OrderItemAdapter(val clickListener: (order: Order) -> Unit)
      * @param holder The ViewHolder to bind data to.
      * @param position The position of the item in the list.
      */
-    override fun onBindViewHolder(holder: OrderItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MenuItemViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item, clickListener)
     }
 
     /**
-     * ViewHolder class for individual order items in the RecyclerView.
+     * ViewHolder class for individual menu items in the RecyclerView.
      *
      * @param binding The data binding for the layout.
      */
-    /**
-    //     * ViewHolder class for individual order items in the RecyclerView.
-    //     *
-    //     * @param binding The data binding for the layout.
-    //     */
-    class OrderItemViewHolder(val binding: OrderItemBinding)
+    class MenuItemViewHolder(val binding: MenuItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             /**
-            * Inflates a OrderItemViewHolder from the provided parent ViewGroup.
-            *
-            * @param parent The parent ViewGroup for inflating the ViewHolder.
-            * @return A new OrderItemViewHolder.
-            */
-            fun inflateFrom(parent: ViewGroup): OrderItemViewHolder {
+             * Inflates a MenuItemViewHolder from the provided parent ViewGroup.
+             *
+             * @param parent The parent ViewGroup for inflating the ViewHolder.
+             * @return A new MenuItemViewHolder.
+             */
+            fun inflateFrom(parent: ViewGroup): MenuItemViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = OrderItemBinding.inflate(layoutInflater, parent, false)
-                return OrderItemViewHolder(binding)
+                val binding = MenuItemBinding.inflate(layoutInflater, parent, false)
+                return MenuItemViewHolder(binding)
             }
         }
 
         /**
-         * Binds an order item to the ViewHolder.
+         * Binds a menu item to the ViewHolder.
          *
-         * @param item The Order object to bind to the ViewHolder.
+         * @param item The MenuItem object to bind to the ViewHolder.
+         * @param clickListener A lambda function to handle item click events.
          */
-        fun bind(item: Order, clickListener: (order: Order) -> Unit) {
-            binding.order = item
-
-            // Create and set up the inner RecyclerView for menu items
-            val menuItemAdapter = MenuItemAdapter {}
-
-            binding.menuItemsRecyclerView.apply {
-                adapter = menuItemAdapter
-                layoutManager = LinearLayoutManager(context) // Set the layout manager
-            }
-
-            menuItemAdapter.submitList(item.orderItems)
+        fun bind(item: MenuItem, clickListener: (menuItems: List<MenuItem>) -> Unit) {
+            binding.menuItem = item
+            binding.root.setOnClickListener { clickListener(listOf(item)) }
         }
     }
 }

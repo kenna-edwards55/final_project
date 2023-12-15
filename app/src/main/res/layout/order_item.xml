@@ -6,6 +6,12 @@
         <variable
             name="order"
             type="com.example.final_project.Order" />
+        <variable
+            name="viewModel"
+            type="com.example.final_project.OrdersViewModel" />
+        <variable
+            name="orderItemsAdapter"
+            type="com.example.final_project.MenuItemAdapter" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -14,27 +20,57 @@
         android:layout_margin="5dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="5dp" >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
             <TextView
-                android:id="@+id/note_name"
+                android:id="@+id/restaurant_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:padding="8dp"
-                android:text="@{order.orderName}" />
+                android:text="@{order.orderRestaurantName}" />
+
+            <!-- Iterate over the list of ordered items -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Use a RecyclerView or iterate over the order.OrderItems list -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ordered Items:" />
+
+                <!-- Iterate over the order.OrderItems list -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/menuItemsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:adapter="@{orderItemsAdapter}"/>
+            </LinearLayout>
+
+            <!-- Display date, time, and address -->
             <TextView
-                android:id="@+id/note_description"
+                android:id="@+id/timestampTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/gray"
-                android:padding="8dp"
-                android:text="@{order.orderDescription}" />
-
+                android:text="@{order.timestamp.toString()}"
+                android:padding="8dp"/>
+            <TextView
+                android:id="@+id/addressTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{order.orderDeliveryAddress}"
+                android:padding="8dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

@@ -11,15 +11,13 @@ import java.sql.Timestamp
  * @property orderDescription The description or content of the order.
  */
 
-data class Order(
+data class Restaurant(
     @get:Exclude
-    var orderId:String = "",
-    var orderRestaurantName: String = "",
-    var orderItems: List<MenuItem>? = null,
-    var orderDeliveryAddress: String = "",
-    var orderSpecialInstructions: String = "",
-    var timestamp: Timestamp? = null,
-//    var orderDescription: String = ""
+    var restaurantId:String = "",
+    var restaurantName: String = "",
+    var restaurantDisplayName: String = "",
+    var imageUrls: List<String>? = null,
+    var restaurantAddress: String = "",
 )
 
 

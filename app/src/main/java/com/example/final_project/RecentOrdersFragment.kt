@@ -53,10 +53,20 @@ class RecentOrdersFragment : Fragment()   {
         }
 
         /**
+         * Function to handle click on a order.
+         */
+        fun menuItemClicked (menuItem: MenuItem) {
+            Log.d(TAG, "in menuItemClicked() : menuItemID = ${menuItem.itemId}")
+//            viewModel.onMenuItemClicked(menuItem)
+        }
+
+        /**
          * Creates an adapter for the RecyclerView to handle order items.
          */
         val adapter = OrderItemAdapter(::orderClicked)
         binding.ordersList.adapter = adapter
+
+
 
         /**
          * Observes changes in the orders list and update the RecyclerView.
@@ -79,28 +89,6 @@ class RecentOrdersFragment : Fragment()   {
             }
         })
 
-        /**
-         * Listens for icons to be clicked in the toolbar.
-         *  IF the add order icon is pressed, addOrder() is called
-         *  ELSE IF the user icon is clicked, user is prompted to sign in/out/up
-         */
-//        toolbar.setOnMenuItemClickListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.action_add_order -> {
-//                    Log.d(TAG, "Add order icon in toolbar clicked")
-//
-//                    viewModel.addOrder()
-//                    true
-//                }
-//                R.id.action_user_from_orders -> {
-//                    Log.d(TAG, "User icon clicked. Navigating to user screen")
-//
-//                    this.findNavController().navigate(R.id.action_ordersFragment_to_userScreenFragment)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
         return view
     }
 

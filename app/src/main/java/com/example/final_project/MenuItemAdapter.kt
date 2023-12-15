@@ -106,7 +106,7 @@ class MenuItemAdapter(val clickListener: (menuItems: List<MenuItem>) -> Unit)
      */
     override fun onBindViewHolder(holder: MenuItemViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, clickListener)
+        holder.bind(item)
     }
 
     /**
@@ -137,7 +137,7 @@ class MenuItemAdapter(val clickListener: (menuItems: List<MenuItem>) -> Unit)
          * @param item The MenuItem object to bind to the ViewHolder.
          * @param clickListener A lambda function to handle item click events.
          */
-        fun bind(item: MenuItem, clickListener: (menuItems: List<MenuItem>) -> Unit) {
+        fun bind(item: MenuItem) {
             binding.menuItem = item
             binding.root.setOnClickListener { clickListener(listOf(item)) }
         }

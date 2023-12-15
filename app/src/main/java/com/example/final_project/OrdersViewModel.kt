@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.R
 
 /**
  * ViewModel class for managing orders and navigation in the RecentOrdersFragment.
@@ -74,6 +75,35 @@ class OrdersViewModel() : ViewModel() {
     val orders: LiveData<List<Order>>
         get() = _orders as LiveData<List<Order>>
 
+
+    /**
+     * LiveData representing the currently edited order.
+     */
+    var restaurant = MutableLiveData<Restaurant>()
+
+
+    /**
+     * LiveData representing a list of orders.
+     */
+    private val _restaurants: MutableLiveData<MutableList<Restaurant>> = MutableLiveData()
+    val restaurants: LiveData<List<Restaurant>>
+        get() = _restaurants as LiveData<List<Restaurant>>
+
+    private val _selectedRestaurantId = MutableLiveData<String>()
+
+//    val selectedRestaurantMenuItems: LiveData<List<MenuItem>> =
+//        Transformations.switchMap(_selectedRestaurantId) { restaurantId ->
+//            MutableLiveData<List<MenuItem>>().apply {
+//                // Load menu items based on the selected restaurant ID
+//                // This is where you should fetch menu items from your database
+//                // and update the value of this MutableLiveData
+//                // For simplicity, let's assume you have a function called `loadMenuItems`
+//                // that fetches menu items based on the restaurant ID
+//                loadMenuItems(restaurantId)
+//            }
+//        }
+
+
     /**
      * LiveData to indicate navigation to a specific order.
      */
@@ -114,6 +144,14 @@ class OrdersViewModel() : ViewModel() {
     val navigateToSignIn: LiveData<Boolean>
         get() = _navigateToSignIn
 
+    private val _menuItems = MutableLiveData<List<MenuItem>>()
+
+    // Expose menuItems as LiveData to observe changes
+    val menuItems: LiveData<List<MenuItem>> get() = _menuItems
+
+    // Populate menuItems with data from _restaurant
+
+
     /**
      * Keeps track of data changing within order objects and communicated with firebase realtime DB.
      */
@@ -127,6 +165,7 @@ class OrdersViewModel() : ViewModel() {
             order.value = Order()
         }
         _orders.value = mutableListOf<Order>()
+        _restaurants.value= mutableListOf<Restaurant>()
     }
 
     /**
@@ -165,7 +204,7 @@ class OrdersViewModel() : ViewModel() {
                     restaurant?.restaurantId = restaurantSnapshot.key!!
                     restaurantsList.add(restaurant!!)
                 }
-//                _orders.value = ordersList
+                _restaurants.value = restaurantsList
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -213,6 +252,19 @@ class OrdersViewModel() : ViewModel() {
                     Log.e("View Model", "Error adding restaurant: ${task.exception}")
                     // Error adding restaurant
                     // Handle failure logic if needed
+                }
+            }
+    }
+
+    fun addOrderToDatabase(order: Order) {
+        Log.d("ViewModel", "Inside add order")
+
+        ordersCollection.push().setValue(order)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("View Model", "Order added")
+                } else {
+                    Log.e("View Model", "Error adding Order: ${task.exception}")
                 }
             }
     }

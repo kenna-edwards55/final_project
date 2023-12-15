@@ -88,17 +88,24 @@ class HomeScreenFragment : Fragment() {
 
 // Create a new restaurant instance
         val newRestaurant = Restaurant(
-            restaurantName = "chipotle",
-            restaurantDisplayName = "Chipotle",
-            imageUrls = listOf("https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/chipotle%2Fchipotle_food.jpeg?alt=media&token=897055dd-d085-4961-a9ec-f0a23d755cc0",
-                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/chipotle%2Fchipotle_front.jpeg?alt=media&token=7196baba-6b54-400f-bb5f-00373ae5b5da", "" +
-                        "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/chipotle%2Fchipotle_inside.jpeg?alt=media&token=9f4b8da3-fadd-4f4f-b562-b1b7abf48f3c"),
-            restaurantAddress = "420 E Kirkwood Ave Bloomington, IN  47408 United States"
+            restaurantName = "taste_of_india",
+            restaurantDisplayName = "Taste of India",
+            imageUrls = listOf("https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_food.jpeg?alt=media&token=d4072fea-95d1-4197-a6f3-bb3bb352e7f8",
+                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_inside.jpeg?alt=media&token=c794d9dc-8f7a-4d23-8633-6278212edec9",
+                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_outside.jpeg?alt=media&token=92190b0f-7f6b-4cf3-9a08-0c0c45df1ea7"),
+            restaurantAddress = "316 E Fourth St Bloomington, IN 47408 United States"
         )
 
-        binding.viewModel?.addRestaurantToDatabase(newRestaurant)
-        binding.viewModel?.addOrder()
+        val order = Order(
+            orderRestaurantName = "mcdonalds",
+            orderItems = listOf(MenuItem(itemName = "Fries", itemCost = "$2", itemQuantity = "1"), MenuItem(itemName = "Oreo McFlurry", itemCost = "$3", itemQuantity = "1"), MenuItem(itemName = "Filet O Fish", itemCost = "$5", itemQuantity = "3")),
+            orderDeliveryAddress = "700 N Woodlawn Ave Bloomington, IN 47408 United States",
+            orderSpecialInstructions = "BBQ sauce on the side"
+        )
 
+        binding.viewModel?.addOrderToDatabase(order)
+
+//        binding.viewModel?.addRestaurantToDatabase(newRestaurant)
 
     }
 

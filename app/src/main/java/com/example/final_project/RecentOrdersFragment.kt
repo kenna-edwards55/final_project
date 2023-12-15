@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-//import com.example.final_project.databinding.FragmentOrdersBinding
 import com.example.final_project.databinding.FragmentRecentOrdersBinding
 
 /**

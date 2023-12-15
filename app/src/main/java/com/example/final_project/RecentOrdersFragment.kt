@@ -50,7 +50,6 @@ class RecentOrdersFragment : Fragment()   {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-
         drawerLayout = binding.drawerLayout
         navView = binding.navView
 
@@ -92,11 +91,6 @@ class RecentOrdersFragment : Fragment()   {
         val adapter = OrderItemAdapter(::orderClicked)
         binding.ordersList.adapter = adapter
 
-//        val menuItemAdapter= MenuItemAdapter()
-//        binding.ordersList.m
-
-
-
 
         /**
          * Observes changes in the orders list and update the RecyclerView.
@@ -136,13 +130,14 @@ class RecentOrdersFragment : Fragment()   {
             when (menuItem.itemId) {
                 R.id.nav_home -> {
                     //do nothing
+                    this.findNavController().navigate(R.id.action_recentOrdersFragment_to_homeScreenFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.nav_recent_orders -> {
                     // Handle Recent Orders click
                     // Example: navigate to RecentOrdersFragment
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_recentOrdersFragment)
+//                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_recentOrdersFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }

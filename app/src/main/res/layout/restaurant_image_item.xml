@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{image.imageUrl}" />
+                android:src="@{image.imageUrl}"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

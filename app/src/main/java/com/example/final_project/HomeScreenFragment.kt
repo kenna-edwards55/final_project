@@ -14,12 +14,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.final_project.databinding.FragmentHomeScreenBinding
-import com.example.final_project.databinding.NavHeaderBinding
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -42,19 +39,10 @@ class HomeScreenFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-
         drawerLayout = binding.drawerLayout
         navView = binding.navView
 
-        //TODO fix getting the user's data
-//        val navHeaderBinding = NavHeaderBinding.inflate(inflater, binding.navView, false)
 
-        // Access the views in nav_header.xml
-//        navHeaderBinding.userNameTextView.text = viewModel.currentUserData.value!!.name
-//        navHeaderBinding.userEmailTextView.text = viewModel.currentUserData.value!!.email
-
-        // Set the inflated nav_header.xml to the header of the NavigationView
-//        binding.navView.addHeaderView(navHeaderBinding.root)
 
         val toolbar:Toolbar = binding.toolbar
 
@@ -69,9 +57,42 @@ class HomeScreenFragment : Fragment() {
         toggle.syncState()
 
         setupNavigation()
-        addTheRestaurants()
+//        addTheRestaurants()
 
         setHasOptionsMenu(true) // Enable options menu handling
+
+        /**
+         * Function to handle click on a note.
+         */
+        fun favoriteClicked (order : Order) {
+//            Log.d("HomeScreen", "in restaurantClicked() : noteId = ${restaurant.restaurantId}")
+            viewModel.onRestaurantClicked(order.restaurant!!)
+        }
+
+        fun restaurantClicked (restaurant: Restaurant) {
+            viewModel.onRestaurantClicked(restaurant)
+        }
+
+        /**
+         * Creates an adapter for the RecyclerView to handle note items.
+         */
+        val favoritesAdapter = RestaurantNameHorizontalAdapter(::favoriteClicked)
+        binding.favoritesList.adapter = favoritesAdapter
+
+        val allRestaurantsAdapter = RestaurantNameVerticalAdapter(::restaurantClicked)
+        binding.allRestaurantsList.adapter = allRestaurantsAdapter
+
+//        favoritesAdapter.notifyDataSetChanged()
+//        allRestaurantsAdapter.notifyDataSetChanged()
+
+        // In your Fragment or ViewModel
+        viewModel.orders.observe(viewLifecycleOwner) { favorites ->
+            favoritesAdapter.submitList(favorites)
+        }
+
+        viewModel.restaurants.observe(viewLifecycleOwner) { allRestaurants ->
+            allRestaurantsAdapter.submitList(allRestaurants)
+        }
 
 
 //        viewModel.currentUserData.observe(viewLifecycleOwner, Observer { user ->
@@ -186,3 +207,14 @@ class HomeScreenFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 }
+
+
+//TODO fix getting the user's data
+//        val navHeaderBinding = NavHeaderBinding.inflate(inflater, binding.navView, false)
+
+// Access the views in nav_header.xml
+//        navHeaderBinding.userNameTextView.text = viewModel.currentUserData.value!!.name
+//        navHeaderBinding.userEmailTextView.text = viewModel.currentUserData.value!!.email
+
+// Set the inflated nav_header.xml to the header of the NavigationView
+//        binding.navView.addHeaderView(navHeaderBinding.root)

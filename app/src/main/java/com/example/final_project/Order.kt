@@ -15,11 +15,12 @@ data class Order(
     @get:Exclude
     var orderId:String = "",
     var orderRestaurantName: String = "",
+    var restaurant: Restaurant? = null,
     var orderImageCode: String = "",
     var orderItems: List<MenuItem>? = null,
     var orderDeliveryAddress: String = "",
     var orderSpecialInstructions: String = "",
-    var timestamp: Timestamp? = null,
+    var timestamp: String = ""
 //    var orderDescription: String = ""
 )
 

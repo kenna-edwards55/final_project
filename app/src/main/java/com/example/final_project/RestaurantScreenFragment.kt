@@ -57,6 +57,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.final_project.databinding.FragmentRestaurantScreenBinding
+import com.example.final_project.ImageAdapter
 import com.google.android.material.navigation.NavigationView
 
 /**
@@ -91,13 +92,14 @@ class RestaurantScreenFragment : Fragment()   {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+//        val orderImageCode = binding.viewModel.order.value?.orderImageCode // Replace with your actual orderImageCode
+//        val filteredImageUrls = viewModel.images.f
+//            .filter { it.contains(orderImageCode) }
 
-        val orderImageCode = binding.viewModel.restaurant.value.restaurantImageCode // Replace with your actual orderImageCode
-        val filteredImageUrls = imageUrls.filter { it.contains(orderImageCode) }
-
-        val imageAdapter = ImageAdapter(this, filteredImageUrls, orderImageCode)
-        binding.recyclerView.adapter = imageAdapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        //TODO finish scrolling images
+//        val imageAdapter = ImageAdapter(view.context,)
+//        binding.recyclerView.adapter = imageAdapter
+//        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
 
         drawerLayout = binding.drawerLayout

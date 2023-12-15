@@ -75,6 +75,20 @@ class OrdersViewModel() : ViewModel() {
         get() = _orders as LiveData<List<Order>>
 
     /**
+     * LiveData representing a list of orders.
+     */
+    private val _restaurants: MutableLiveData<MutableList<Restaurant>> = MutableLiveData()
+    val restaurants: LiveData<List<Restaurant>>
+        get() = _restaurants as LiveData<List<Restaurant>>
+
+//    /**
+//     * LiveData representing a list of orders.
+//     */
+//    private val _: MutableLiveData<MutableList<Restaurant>> = MutableLiveData()
+//    val restaurants: LiveData<List<Restaurant>>
+//        get() = _restaurants as LiveData<List<Restaurant>>
+
+    /**
      * LiveData for posts
      */
     private val _images: MutableLiveData<MutableList<Image>> = MutableLiveData()
@@ -88,14 +102,8 @@ class OrdersViewModel() : ViewModel() {
     var restaurant = MutableLiveData<Restaurant>()
 
 
-    /**
-     * LiveData representing a list of orders.
-     */
-    private val _restaurants: MutableLiveData<MutableList<Restaurant>> = MutableLiveData()
-    val restaurants: LiveData<List<Restaurant>>
-        get() = _restaurants as LiveData<List<Restaurant>>
-
-    private val _selectedRestaurantId = MutableLiveData<String>()
+//
+//    private val _selectedRestaurantId = MutableLiveData<String>()
 
 //    val selectedRestaurantMenuItems: LiveData<List<MenuItem>> =
 //        Transformations.switchMap(_selectedRestaurantId) { restaurantId ->
@@ -257,18 +265,6 @@ class OrdersViewModel() : ViewModel() {
         })
     }
 
-
-//    val menuItemsAdapter = MutableLiveData<MenuItemAdapter>()
-
-    // ... other methods ...
-
-    // Update the adapter when needed
-//    fun updateOrderItemsAdapter(order: Order) {
-//        // Assuming OrderItemsAdapter is your RecyclerView adapter class
-//        val adapter = MenuItemAdapter(order.orderItems)
-//        menuItemsAdapter.value = adapter
-//    }
-
     /**
      * Adds a new, empty order to the database and navigates to the newly created order.
      */
@@ -361,6 +357,10 @@ class OrdersViewModel() : ViewModel() {
         order.value = selectedOrder
 
         Log.d(TAG, "Order clicked with ID: $orderId")
+    }
+
+    fun onRestaurantClicked(selectedRestaurant: Restaurant) {
+        //TODO navigate to restaurant screen with that restaurant
     }
 
     /**

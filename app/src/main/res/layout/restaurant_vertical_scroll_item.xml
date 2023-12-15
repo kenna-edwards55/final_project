@@ -7,6 +7,9 @@
             name="restaurant"
             type="com.example.final_project.Restaurant" />
         <variable
+            name="clicked"
+            type="com.example.final_project.HomeScreenFragment" />
+        <variable
             name="viewModel"
             type="com.example.final_project.OrdersViewModel" />
 
@@ -26,7 +29,8 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:padding="8dp"
-            android:text="@{restaurant.restaurantName}" />
+            android:text="@{restaurant.restaurantName}"/>
+<!--        TODO do I even need an on click because of the onclick method?-->
 
     </androidx.cardview.widget.CardView>
 </layout>

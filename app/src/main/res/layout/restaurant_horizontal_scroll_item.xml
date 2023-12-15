@@ -26,7 +26,8 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:padding="8dp"
-            android:text="@{order.restaurant.restaurantName}" />
+            android:text="@{order.restaurant.restaurantName}"
+            android:onClick="@{() -> viewModel.onRestaurantClicked(order.restaurant)}"/>
 
     </androidx.cardview.widget.CardView>
 </layout>

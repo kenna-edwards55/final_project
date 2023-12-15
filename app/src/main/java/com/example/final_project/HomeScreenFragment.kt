@@ -25,7 +25,6 @@ import java.util.Locale
 class HomeScreenFragment : Fragment() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
-//    private lateinit var toolbar: Toolbar
 
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
@@ -82,9 +81,6 @@ class HomeScreenFragment : Fragment() {
         val allRestaurantsAdapter = RestaurantNameVerticalAdapter(::restaurantClicked)
         binding.allRestaurantsList.adapter = allRestaurantsAdapter
 
-//        favoritesAdapter.notifyDataSetChanged()
-//        allRestaurantsAdapter.notifyDataSetChanged()
-
         // In your Fragment or ViewModel
         viewModel.orders.observe(viewLifecycleOwner) { favorites ->
             favoritesAdapter.submitList(favorites)
@@ -95,17 +91,9 @@ class HomeScreenFragment : Fragment() {
         }
 
 
-//        viewModel.currentUserData.observe(viewLifecycleOwner, Observer { user ->
-//            navHeaderBinding.userNameTextView.text = viewModel.currentUserData.value?.name
-//            navHeaderBinding.userEmailTextView.text = viewModel.currentUserData.value?.email
-//            // Update UI with the new user data
-//            // user.email and user.name can be accessed here
-//        })
-
-
-
         return view
     }
+
 
     private fun addTheRestaurants() {
         Log.d("HomeScreen", "trying to add the restaurants")

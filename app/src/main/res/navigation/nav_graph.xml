@@ -69,6 +69,15 @@
         <action
             android:id="@+id/action_recentOrdersFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />
+        <action
+            android:id="@+id/action_recentOrdersFragment_to_mapScreenFragment"
+            app:destination="@id/mapScreenFragment" />
+        <action
+            android:id="@+id/action_recentOrdersFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_recentOrdersFragment_to_calendarScreenFragment"
+            app:destination="@id/calendarScreenFragment" />
     </fragment>
 
     <fragment
@@ -82,6 +91,10 @@
         <action
             android:id="@+id/action_calendarScreenFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_calendarScreenFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+
     </fragment>
 
     <fragment
@@ -89,9 +102,6 @@
         android:name="com.example.final_project.RestaurantScreenFragment"
         android:label="fragment_restaurant_screen"
         tools:layout="@layout/fragment_restaurant_screen" >
-<!--        <argument-->
-<!--            android:name="orderId"-->
-<!--            app:argType="string" />-->
         <action
             android:id="@+id/action_restaurantScreenFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />
@@ -106,6 +116,9 @@
             app:destination="@id/calendarScreenFragment" />
         <action
             android:id="@+id/action_restaurantScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_restaurantScreenFragment_to_signInFragment2"
             app:destination="@id/signInFragment" />
     </fragment>
 
@@ -129,6 +142,9 @@
         <action
             android:id="@+id/action_checkoutScreenFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_checkoutScreenFragment_to_restaurantScreenFragment"
+            app:destination="@id/restaurantScreenFragment" />
     </fragment>
 
     <fragment
@@ -142,6 +158,18 @@
         <action
             android:id="@+id/action_orderScreenFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_orderScreenFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+        <action
+            android:id="@+id/action_orderScreenFragment_to_recentOrdersFragment"
+            app:destination="@id/recentOrdersFragment" />
+        <action
+            android:id="@+id/action_orderScreenFragment_to_calendarScreenFragment"
+            app:destination="@id/calendarScreenFragment" />
+        <action
+            android:id="@+id/action_orderScreenFragment_to_signInFragment2"
+            app:destination="@id/signInFragment" />
     </fragment>
 
     <fragment
@@ -152,5 +180,14 @@
         <action
             android:id="@+id/action_mapScreenFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_mapScreenFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+        <action
+            android:id="@+id/action_mapScreenFragment_to_recentOrdersFragment"
+            app:destination="@id/recentOrdersFragment" />
+        <action
+            android:id="@+id/action_mapScreenFragment_to_calendarScreenFragment"
+            app:destination="@id/calendarScreenFragment" />
     </fragment>
 </navigation>

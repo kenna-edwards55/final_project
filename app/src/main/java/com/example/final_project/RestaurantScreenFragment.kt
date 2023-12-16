@@ -52,6 +52,7 @@ class RestaurantScreenFragment : Fragment()   {
         binding.lifecycleOwner = viewLifecycleOwner
 
 
+
 //        val orderImageCode = binding.viewModel.order.value?.orderImageCode // Replace with your actual orderImageCode
 //        val filteredImageUrls = viewModel.images.f
 //            .filter { it.contains(orderImageCode) }
@@ -79,21 +80,21 @@ class RestaurantScreenFragment : Fragment()   {
 
         setupNavigation()
 
+        fun plusClicked(menuItem: MenuItem) {
+            viewModel.onPlusButtonClicked(menuItem)
+        }
 
-//        /**
-//         * Function to handle click on a order.
-//         */
-//        fun orderClicked (order : Order) {
-//            Log.d(TAG, "in orderClicked() : orderId = ${order.orderId}")
-////            viewModel.onOrderClicked(order)
-//        }
+        fun minusClicked(menuItem: MenuItem) {
+            viewModel.onMinusButtonClicked(menuItem)
+        }
+
 
         val orderAdapter = OrderItemAdapter()
         viewModel.orders.observe(viewLifecycleOwner) {item ->
             orderAdapter.submitList(item)
         }
 
-        val menuAdapter = MenuItemAdapter()
+        val menuAdapter = MenuItemAdapter(::plusClicked, ::minusClicked)
         binding.rvMenuItems.adapter = menuAdapter
 
         viewModel.restaurant.observe(viewLifecycleOwner) { item ->
@@ -102,7 +103,18 @@ class RestaurantScreenFragment : Fragment()   {
             Log.d("Restaurant Screen", "${viewModel.restaurant.value?.menu}")
         }
 
-//        fun plusClicked(menuItem:menuItem)
+        viewModel.menuItems.observe(viewLifecycleOwner) {item ->
+            menuAdapter.submitList(item)
+            Log.d("Restaurant Screen", "updating menu items")
+        }
+
+
+        binding.checkout.setOnClickListener { it ->
+            it?.let {
+                val action = RestaurantScreenFragmentDirections.actionRestaurantScreenFragmentToCheckoutScreenFragment()
+                this.findNavController().navigate(action)
+            }
+        }
 
         /**
          * Function to handle click on a order.
@@ -111,43 +123,6 @@ class RestaurantScreenFragment : Fragment()   {
             Log.d(TAG, "in menuItemClicked() : menuItemID = ${menuItem.itemId}")
 //            viewModel.onMenuItemClicked(menuItem)
         }
-
-        /**
-         * Creates an adapter for the RecyclerView to handle order items.
-         */
-//        val adapter = OrderItemAdapter(::orderClicked)
-//        binding.ordersList.adapter = adapter
-
-//        val menuItemAdapter= MenuItemAdapter()
-//        binding.ordersList.m
-
-
-
-
-        /**
-         * Observes changes in the orders list and update the RecyclerView.
-         */
-//        viewModel.orders.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                adapter.submitList(it)
-//            }
-//        })
-
-//        viewModel.orders.observe(viewLifecycleOwner, Observer { orders ->
-//            orders?.let {
-//                // Sort the orders by timestamp in descending order
-//                val sortedOrders = it.sortedByDescending { order -> order.timestamp }
-//
-//                // Get the first order (most recent) or null if the list is empty
-//                val mostRecentOrder = sortedOrders.firstOrNull()
-//
-//                // Update the adapter with the most recent order
-//                mostRecentOrder?.let { recentOrder ->
-//                    val singleItemList = listOf(recentOrder)
-//                    adapter.submitList(singleItemList)
-//                }
-//            }
-//        })
 
         /**
          * Navigate to the OrderScreenFragment when a order is clicked.
@@ -178,20 +153,21 @@ class RestaurantScreenFragment : Fragment()   {
             when (menuItem.itemId) {
                 R.id.nav_home -> {
                     //do nothing
+                    this.findNavController().navigate(R.id.action_restaurantScreenFragment_to_homeScreenFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.nav_recent_orders -> {
                     // Handle Recent Orders click
                     // Example: navigate to RecentOrdersFragment
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_recentOrdersFragment)
+                    this.findNavController().navigate(R.id.action_restaurantScreenFragment_to_recentOrdersFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.nav_calendar_view -> {
                     // Handle Calendar View click
                     // Example: navigate to CalendarViewFragment
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_calendarScreenFragment)
+                    this.findNavController().navigate(R.id.action_recentOrdersFragment_to_calendarScreenFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
@@ -206,7 +182,7 @@ class RestaurantScreenFragment : Fragment()   {
                      */
                     binding.viewModel!!.loggedIn.value = false
                     binding.viewModel!!.signOut()
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_signInFragment)
+                    this.findNavController().navigate(R.id.action_recentOrdersFragment_to_signInFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }

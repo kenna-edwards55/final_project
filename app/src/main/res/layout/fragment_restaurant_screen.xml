@@ -8,6 +8,7 @@
         <variable
             name="viewModel"
             type="com.example.final_project.OrdersViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,10 +75,16 @@
                     android:layout_weight="2"
                     tools:listitem="@layout/menu_item" />
 
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Check out"
+                    android:id="@+id/checkout"
+                    android:onClick="@{}"/>
+
             </LinearLayout>
 
-
-            <!-- NavigationView -->
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/nav_view"
                 android:layout_width="wrap_content"

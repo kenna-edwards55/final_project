@@ -285,7 +285,7 @@ class OrdersViewModel() : ViewModel() {
             }
     }
 
-    fun addOrderToDatabase(order: Order) {
+    fun addOrderToDatabase() {
         Log.d("ViewModel", "Inside add order")
 
         ordersCollection.push().setValue(order)
@@ -370,6 +370,7 @@ class OrdersViewModel() : ViewModel() {
     }
 
     fun onMinusButtonClicked(menuItem: MenuItem) {
+        Log.d("View Model", "minus clicked")
         // Handle minus button click here
         // You can perform any logic, such as decreasing the quantity or updating UI
     }

@@ -92,20 +92,6 @@ class OrderScreenFragment : Fragment()   {
         val adapter = OrderItemAdapter()
         binding.ordersList.adapter = adapter
 
-//        val menuItemAdapter= MenuItemAdapter()
-//        binding.ordersList.m
-
-
-
-
-        /**
-         * Observes changes in the orders list and update the RecyclerView.
-         */
-//        viewModel.orders.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                adapter.submitList(it)
-//            }
-//        })
 
         viewModel.orders.observe(viewLifecycleOwner, Observer { orders ->
             orders?.let {
@@ -152,20 +138,21 @@ class OrderScreenFragment : Fragment()   {
             when (menuItem.itemId) {
                 R.id.nav_home -> {
                     //do nothing
+                    this.findNavController().navigate(R.id.action_orderScreenFragment_to_homeScreenFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.nav_recent_orders -> {
                     // Handle Recent Orders click
                     // Example: navigate to RecentOrdersFragment
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_recentOrdersFragment)
+                    this.findNavController().navigate(R.id.action_orderScreenFragment_to_recentOrdersFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.nav_calendar_view -> {
                     // Handle Calendar View click
                     // Example: navigate to CalendarViewFragment
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_calendarScreenFragment)
+                    this.findNavController().navigate(R.id.action_orderScreenFragment_to_calendarScreenFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
@@ -180,7 +167,7 @@ class OrderScreenFragment : Fragment()   {
                      */
                     binding.viewModel!!.loggedIn.value = false
                     binding.viewModel!!.signOut()
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_signInFragment)
+                    this.findNavController().navigate(R.id.action_orderScreenFragment_to_signInFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }

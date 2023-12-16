@@ -77,7 +77,6 @@ class RestaurantNameVerticalAdapter(val clickListener: (restaurant: Restaurant) 
 
             Log.d("HorizontalAdapter", "${item.restaurantName}")
 
-            //TODO use the click listener to navigate to the next screen
 
         }
     }

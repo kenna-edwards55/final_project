@@ -77,13 +77,13 @@ class RecentOrdersFragment : Fragment()   {
 
 //        fun plusClicked(menuItem:menuItem)
 
-        /**
-         * Function to handle click on a order.
-         */
-        fun menuItemClicked (menuItem: MenuItem) {
-            Log.d(TAG, "in menuItemClicked() : menuItemID = ${menuItem.itemId}")
-//            viewModel.onMenuItemClicked(menuItem)
-        }
+//        /**
+//         * Function to handle click on a order.
+//         */
+//        fun menuItemClicked (menuItem: MenuItem) {
+//            Log.d(TAG, "in menuItemClicked() : menuItemID = ${menuItem.itemId}")
+////            viewModel.onMenuItemClicked(menuItem)
+//        }
 
         /**
          * Creates an adapter for the RecyclerView to handle order items.
@@ -97,19 +97,16 @@ class RecentOrdersFragment : Fragment()   {
          */
         viewModel.orders.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                val sortedOrders = it.sortedByDescending { order -> order.timestamp }
+
+                adapter.submitList(sortedOrders)
             }
         })
 
-        /**
-         * Navigate to the OrderScreenFragment when a order is clicked.
-         */
-        viewModel.navigateToOrder.observe(viewLifecycleOwner, Observer { orderId ->
-            orderId?.let {
-//                val action = OrdersFragmentDirections
-//                    .actionOrdersFragmentToEditOrderFragment(orderId)
-//                this.findNavController().navigate(action)
-                viewModel.onOrderNavigated()
+        viewModel.orders.observe(viewLifecycleOwner, Observer { orders ->
+            orders?.let {
+                // Sort the orders by timestamp in descending order
+
             }
         })
 
@@ -135,16 +132,13 @@ class RecentOrdersFragment : Fragment()   {
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.nav_recent_orders -> {
-                    // Handle Recent Orders click
-                    // Example: navigate to RecentOrdersFragment
-//                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_recentOrdersFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.nav_calendar_view -> {
                     // Handle Calendar View click
                     // Example: navigate to CalendarViewFragment
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_calendarScreenFragment)
+                    this.findNavController().navigate(R.id.action_recentOrdersFragment_to_calendarScreenFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
@@ -159,7 +153,7 @@ class RecentOrdersFragment : Fragment()   {
                      */
                     binding.viewModel!!.loggedIn.value = false
                     binding.viewModel!!.signOut()
-                    this.findNavController().navigate(R.id.action_homeScreenFragment_to_signInFragment)
+                    this.findNavController().navigate(R.id.action_recentOrdersFragment_to_signInFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }

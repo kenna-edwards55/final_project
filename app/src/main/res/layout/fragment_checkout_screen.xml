@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".CheckoutScreenFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.final_project.OrdersViewModel" />
+        <variable
+            name="order"
+            type="com.example.final_project.Order" />
+    </data>
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <!-- Main content -->
+            <LinearLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                    <ImageView
+                        android:id="@+id/search_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="right"
+                        android:layout_margin="20dp"
+                        android:src="@drawable/search_icon"
+                        android:onClick="search"/>
+                </androidx.appcompat.widget.Toolbar>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/pending_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:spanCount="1" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addressTextEdit"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Delivery Address"
+                    android:layout_gravity="center"
+                    android:text="@{viewModel.order.orderDeliveryAddress}"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/instructionsTextEdit"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="Special Instructions"
+                    android:text="@{viewModel.order.orderSpecialInstructions}"/>
+
+                <Button
+                    android:id="@+id/modifyOrderBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Modify Order" />
+
+                <Button
+                    android:id="@+id/placeOrderBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Place Order" />
+
+            </LinearLayout>
+
+
+            <!-- NavigationView -->
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/nav_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                app:headerLayout="@layout/nav_header"
+                app:menu="@menu/nav_menu"/>
+        </androidx.drawerlayout.widget.DrawerLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

@@ -55,7 +55,6 @@ class HomeScreenFragment : Fragment() {
         toggle.syncState()
 
         setupNavigation()
-//        addTheRestaurants()
 
         setHasOptionsMenu(true) // Enable options menu handling
 
@@ -110,34 +109,12 @@ class HomeScreenFragment : Fragment() {
     private fun addTheRestaurants() {
         Log.d("HomeScreen", "trying to add the restaurants")
 
-// Create a new restaurant instance
-//        val newRestaurant = Restaurant(
-//            restaurantName = "taste_of_india",
-//            restaurantDisplayName = "Taste of India",
-//            imageUrls = listOf("https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_food.jpeg?alt=media&token=d4072fea-95d1-4197-a6f3-bb3bb352e7f8",
-//                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_inside.jpeg?alt=media&token=c794d9dc-8f7a-4d23-8633-6278212edec9",
-//                "https://firebasestorage.googleapis.com/v0/b/final-project-1310c.appspot.com/o/taste_of_india%2Ftaste_of_india_outside.jpeg?alt=media&token=92190b0f-7f6b-4cf3-9a08-0c0c45df1ea7"),
-//            restaurantAddress = "316 E Fourth St Bloomington, IN 47408 United States"
-//        )
-
-//        val order = Order(
-//            orderRestaurantName = "mcdonalds",
-//            orderItems = listOf(MenuItem(itemName = "Fries", itemCost = "$2", itemQuantity = "1"), MenuItem(itemName = "Oreo McFlurry", itemCost = "$3", itemQuantity = "1"), MenuItem(itemName = "Filet O Fish", itemCost = "$5", itemQuantity = "3")),
-//            orderDeliveryAddress = "700 N Woodlawn Ave Bloomington, IN 47408 United States",
-//            orderSpecialInstructions = "BBQ sauce on the side"
-//        )
-
         val currentTimestamp: Long = System.currentTimeMillis()
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val formattedTimestamp = dateFormat.format(Date(currentTimestamp))
 
         Log.d("HomeScreen", "${formattedTimestamp}")
-
-
-//        binding.viewModel?.addOrderToDatabase(order)
-
-//        binding.viewModel?.addRestaurantToDatabase(newRestaurant)
 
     }
 
@@ -207,14 +184,3 @@ class HomeScreenFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 }
-
-
-//TODO fix getting the user's data
-//        val navHeaderBinding = NavHeaderBinding.inflate(inflater, binding.navView, false)
-
-// Access the views in nav_header.xml
-//        navHeaderBinding.userNameTextView.text = viewModel.currentUserData.value!!.name
-//        navHeaderBinding.userEmailTextView.text = viewModel.currentUserData.value!!.email
-
-// Set the inflated nav_header.xml to the header of the NavigationView
-//        binding.navView.addHeaderView(navHeaderBinding.root)

@@ -88,27 +88,10 @@ class OrdersViewModel() : ViewModel() {
     val images: LiveData<List<Image>>
         get() = _images as LiveData<List<Image>>
 
-
     /**
      * LiveData representing the currently edited order.
      */
     var restaurant = MutableLiveData<Restaurant>()
-
-
-//
-//    private val _selectedRestaurantId = MutableLiveData<String>()
-
-//    val selectedRestaurantMenuItems: LiveData<List<MenuItem>> =
-//        Transformations.switchMap(_selectedRestaurantId) { restaurantId ->
-//            MutableLiveData<List<MenuItem>>().apply {
-//                // Load menu items based on the selected restaurant ID
-//                // This is where you should fetch menu items from your database
-//                // and update the value of this MutableLiveData
-//                // For simplicity, let's assume you have a function called `loadMenuItems`
-//                // that fetches menu items based on the restaurant ID
-//                loadMenuItems(restaurantId)
-//            }
-//        }
 
 
     /**
@@ -180,33 +163,17 @@ class OrdersViewModel() : ViewModel() {
         /**
          * Fetch the currently signed in user from Firestore
          */
-//        firestoreDB.collection("users")
-//            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
-//            .get()
-//            .addOnSuccessListener { userSnapshot ->
-//                user = userSnapshot.toObject<User>()!!
-//                Log.i(TAG, "signed in user: $user")
-//            }
-//            .addOnFailureListener { exception ->
-//                Log.i(TAG, "Failure fetching signed in user", exception)
-//            }
+        firestoreDB.collection("users")
+            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
+            .get()
+            .addOnSuccessListener { userSnapshot ->
+                user = userSnapshot.toObject<User>()!!
+                Log.i(TAG, "signed in user: $user")
+            }
+            .addOnFailureListener { exception ->
+                Log.i(TAG, "Failure fetching signed in user", exception)
+            }
 
-
-//        if (currentUser != null) {
-//            firestoreDB.collection("users")
-//                .document(currentUser.uid)
-//                .get()
-//                .addOnSuccessListener { userSnapshot ->
-//                    user = userSnapshot.toObject<User>()!!
-//                    Log.i(TAG, "signed in user: $user")
-//                }
-//                .addOnFailureListener { exception ->
-//                    Log.i(TAG, "Failure fetching signed in user", exception)
-//                }
-//        } else {
-//            Log.e(TAG, "Current user is null. Handle this case appropriately.")
-//            // Handle the case where the current user is null.
-//        }
         /**
          * Query posts from Firestore and listen for changes
          */
@@ -273,15 +240,6 @@ class OrdersViewModel() : ViewModel() {
         })
     }
 
-    /**
-     * Adds a new, empty order to the database and navigates to the newly created order.
-     */
-    fun addOrder(restaurant: Restaurant) {
-        Log.d(TAG, "Adding a order")
-
-    }
-
-
     fun addRestaurantToDatabase(newRestaurant: Restaurant) {
         Log.d("ViewModel", "Inside add restaurant")
 
@@ -302,6 +260,19 @@ class OrdersViewModel() : ViewModel() {
     }
 
     fun addOrderToDatabase() {
+        Log.d("ViewModel", "Inside add order")
+
+        ordersCollection.push().setValue(order)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("View Model", "Order added")
+                } else {
+                    Log.e("View Model", "Error adding Order: ${task.exception}")
+                }
+            }
+    }
+
+    fun loadOrders(order:Order) {
         Log.d("ViewModel", "Inside add order")
 
         ordersCollection.push().setValue(order)

@@ -91,6 +91,7 @@ class HomeScreenFragment : Fragment() {
             allRestaurantsAdapter.submitList(allRestaurants)
         }
 
+//        addingOrders() //Used to add dummy code to the database
         /**
          * Navigate to the NoteScreenFragment when a note is clicked.
          */
@@ -106,17 +107,17 @@ class HomeScreenFragment : Fragment() {
     }
 
 
-//    private fun addTheRestaurants() {
-//        Log.d("HomeScreen", "trying to add the restaurants")
-//
-//        val currentTimestamp: Long = System.currentTimeMillis()
-//
-//        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-//        val formattedTimestamp = dateFormat.format(Date(currentTimestamp))
-//
-//        Log.d("HomeScreen", "${formattedTimestamp}")
-//
-//    }
+    private fun addingOrders() {
+        val currentTimestamp: Long = System.currentTimeMillis()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val formattedTimestamp = dateFormat.format(Date(currentTimestamp))
+        val order = Order(restaurant = Restaurant(restaurantName = "Big Woods"),
+            orderItems = listOf(MenuItem(itemName = "Beer", itemQuantity = "1", itemCost = "$6.50"),
+            MenuItem("Chips and Salsa", itemCost = "$5", itemQuantity = "1"),
+                MenuItem(itemName = "Chef Salad", itemQuantity = "1", itemCost = "$8.50")), timestamp = formattedTimestamp)
+        binding.viewModel?.loadOrders(order)
+    }
+
 
     private fun setupNavigation() {
         navView.setNavigationItemSelectedListener { menuItem ->

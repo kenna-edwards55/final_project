@@ -53,8 +53,15 @@ To run the app locally, follow these steps:
 - [Firebase Cloud Storage](https://firebase.google.com/docs/storage): Used for storing restaurant images.
 - [Android Navigation Component](https://developer.android.com/guide/navigation): Used for navigation between fragments.
 
-  ## Database Links
-  
+## Demonstration 
+
+## Future Improvements
+1. Scrolling images.
+  - Glide is internally implemented, but I struggled with syncing the ImageAdapter to the RestaurantScreen
+2. Choosing menu items for your order
+   - The database is sending the menu items and they display, but I struggled to get the plus and minus buttons to work correctly within the MenuItemAdapter.
+   - It is implemented internally with comments, but is not in the final product.
+
 
 ## Contributing
 

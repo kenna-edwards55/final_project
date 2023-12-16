@@ -46,19 +46,19 @@ class SplashFragment : Fragment() {
 
         val handler = Handler(Looper.myLooper()!!)
         handler.postDelayed({
-            viewModel.signOut()
-            viewModel.loggedIn.value = false
-            this.findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
+//            viewModel.signOut()
+//            viewModel.loggedIn.value = false
+//            this.findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
 
-//            if (currentUser != null) {
-//                viewModel.initializeTheDatabaseReference()
-//                viewModel.loggedIn.value = true
-//                this.findNavController().navigate(R.id.action_splashFragment_to_homeScreenFragment)
-//            }
-//            else {
-//                viewModel.loggedIn.value = false
-//                this.findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
-//            }
+            if (currentUser != null) {
+                viewModel.initializeTheDatabaseReference()
+                viewModel.loggedIn.value = true
+                this.findNavController().navigate(R.id.action_splashFragment_to_homeScreenFragment)
+            }
+            else {
+                viewModel.loggedIn.value = false
+                this.findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
+            }
 
         }, 2000)
     }

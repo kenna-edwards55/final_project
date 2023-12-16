@@ -55,6 +55,8 @@ To run the app locally, follow these steps:
 
 ## Demonstration 
 
+<img src='https://github.com/kenna-edwards55/final_project/blob/master/FinalProjectDemo.gif' >
+
 ## Future Improvements
 1. Scrolling images.
   - Glide is internally implemented, but I struggled with syncing the ImageAdapter to the RestaurantScreen

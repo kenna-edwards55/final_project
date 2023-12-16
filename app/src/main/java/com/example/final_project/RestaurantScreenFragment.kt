@@ -167,7 +167,7 @@ class RestaurantScreenFragment : Fragment()   {
                 R.id.nav_calendar_view -> {
                     // Handle Calendar View click
                     // Example: navigate to CalendarViewFragment
-                    this.findNavController().navigate(R.id.action_recentOrdersFragment_to_calendarScreenFragment)
+                    this.findNavController().navigate(R.id.action_restaurantScreenFragment_to_calendarScreenFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }
@@ -182,7 +182,7 @@ class RestaurantScreenFragment : Fragment()   {
                      */
                     binding.viewModel!!.loggedIn.value = false
                     binding.viewModel!!.signOut()
-                    this.findNavController().navigate(R.id.action_recentOrdersFragment_to_signInFragment)
+                    this.findNavController().navigate(R.id.action_restaurantScreenFragment_to_signInFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     return@setNavigationItemSelectedListener true
                 }

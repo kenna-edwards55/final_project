@@ -16,7 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.final_project.databinding.FragmentHomeScreenBinding
+import com.example.final_project.databinding.FragmentMapScreenBinding
 import com.google.android.material.navigation.NavigationView
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -27,13 +27,13 @@ class MapScreenFragment : Fragment() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
 
-    private var _binding: FragmentHomeScreenBinding? = null
+    private var _binding: FragmentMapScreenBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
+        _binding = FragmentMapScreenBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewModel : OrdersViewModel by activityViewModels()
         binding.viewModel = viewModel

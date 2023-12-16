@@ -180,17 +180,33 @@ class OrdersViewModel() : ViewModel() {
         /**
          * Fetch the currently signed in user from Firestore
          */
-        firestoreDB.collection("users")
-            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
-            .get()
-            .addOnSuccessListener { userSnapshot ->
-                user = userSnapshot.toObject<User>()!!
-                Log.i(TAG, "signed in user: $user")
-            }
-            .addOnFailureListener { exception ->
-                Log.i(TAG, "Failure fetching signed in user", exception)
-            }
+//        firestoreDB.collection("users")
+//            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
+//            .get()
+//            .addOnSuccessListener { userSnapshot ->
+//                user = userSnapshot.toObject<User>()!!
+//                Log.i(TAG, "signed in user: $user")
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.i(TAG, "Failure fetching signed in user", exception)
+//            }
 
+
+//        if (currentUser != null) {
+//            firestoreDB.collection("users")
+//                .document(currentUser.uid)
+//                .get()
+//                .addOnSuccessListener { userSnapshot ->
+//                    user = userSnapshot.toObject<User>()!!
+//                    Log.i(TAG, "signed in user: $user")
+//                }
+//                .addOnFailureListener { exception ->
+//                    Log.i(TAG, "Failure fetching signed in user", exception)
+//                }
+//        } else {
+//            Log.e(TAG, "Current user is null. Handle this case appropriately.")
+//            // Handle the case where the current user is null.
+//        }
         /**
          * Query posts from Firestore and listen for changes
          */

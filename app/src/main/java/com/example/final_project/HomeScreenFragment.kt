@@ -73,9 +73,9 @@ class HomeScreenFragment : Fragment() {
 
         }
 
-        /**
-         * Creates an adapter for the RecyclerView to handle note items.
-         */
+//        /**
+//         * Creates an adapter for the RecyclerView to handle note items.
+//         */
         val favoritesAdapter = RestaurantNameHorizontalAdapter(::favoriteClicked)
         binding.favoritesList.adapter = favoritesAdapter
 
@@ -106,17 +106,17 @@ class HomeScreenFragment : Fragment() {
     }
 
 
-    private fun addTheRestaurants() {
-        Log.d("HomeScreen", "trying to add the restaurants")
-
-        val currentTimestamp: Long = System.currentTimeMillis()
-
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        val formattedTimestamp = dateFormat.format(Date(currentTimestamp))
-
-        Log.d("HomeScreen", "${formattedTimestamp}")
-
-    }
+//    private fun addTheRestaurants() {
+//        Log.d("HomeScreen", "trying to add the restaurants")
+//
+//        val currentTimestamp: Long = System.currentTimeMillis()
+//
+//        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+//        val formattedTimestamp = dateFormat.format(Date(currentTimestamp))
+//
+//        Log.d("HomeScreen", "${formattedTimestamp}")
+//
+//    }
 
     private fun setupNavigation() {
         navView.setNavigationItemSelectedListener { menuItem ->

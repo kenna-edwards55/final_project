@@ -74,13 +74,11 @@ class RestaurantNameHorizontalAdapter(val clickListener: (order: Order) -> Unit)
         fun bind(item: Order, clickListener: (order: Order) -> Unit) {
             binding.order = item
 
-            binding.restaurantName.text = item.restaurant!!.restaurantName
+            binding.restaurantName.text = item.restaurant?.restaurantName
 
             binding.root.setOnClickListener { clickListener(item) }
 
-            Log.d("HorizontalAdapter", "${item.restaurant!!.restaurantName}")
-
-            //TODO use the click listener to navigate to the next screen
+            Log.d("HorizontalAdapter", "${item.restaurant?.restaurantName}")
 
         }
     }

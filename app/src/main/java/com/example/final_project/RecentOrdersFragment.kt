@@ -68,24 +68,6 @@ class RecentOrdersFragment : Fragment()   {
         setupNavigation()
 
         /**
-         * Function to handle click on a order.
-         */
-//        fun orderClicked (order : Order) {
-//            Log.d(TAG, "in orderClicked() : orderId = ${order.orderId}")
-//            viewModel.onOrderClicked(order)
-//        }
-
-//        fun plusClicked(menuItem:menuItem)
-
-//        /**
-//         * Function to handle click on a order.
-//         */
-//        fun menuItemClicked (menuItem: MenuItem) {
-//            Log.d(TAG, "in menuItemClicked() : menuItemID = ${menuItem.itemId}")
-////            viewModel.onMenuItemClicked(menuItem)
-//        }
-
-        /**
          * Creates an adapter for the RecyclerView to handle order items.
          */
         val adapter = OrderItemAdapter()

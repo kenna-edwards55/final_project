@@ -158,40 +158,40 @@ class OrdersViewModel() : ViewModel() {
 
         _images.value = mutableListOf<Image>()
 
-        val firestoreDB = FirebaseFirestore.getInstance()
-
-        /**
-         * Fetch the currently signed in user from Firestore
-         */
-        firestoreDB.collection("users")
-            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
-            .get()
-            .addOnSuccessListener { userSnapshot ->
-                user = userSnapshot.toObject<User>()!!
-                Log.i(TAG, "signed in user: $user")
-            }
-            .addOnFailureListener { exception ->
-                Log.i(TAG, "Failure fetching signed in user", exception)
-            }
+//        val firestoreDB = FirebaseFirestore.getInstance()
+//
+//        /**
+//         * Fetch the currently signed in user from Firestore
+//         */
+//        firestoreDB.collection("users")
+//            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
+//            .get()
+//            .addOnSuccessListener { userSnapshot ->
+//                user = userSnapshot.toObject<User>()!!
+//                Log.i(TAG, "signed in user: $user")
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.i(TAG, "Failure fetching signed in user", exception)
+//            }
 
         /**
          * Query posts from Firestore and listen for changes
          */
-        var imagesReference = firestoreDB
-            .collection("images")
-            .limit(30)
+//        var imagesReference = firestoreDB
+//            .collection("images")
+//            .limit(30)
 
-        imagesReference.addSnapshotListener { snapshot, exception ->
-            if (exception != null || snapshot == null) {
-                Log.e(TAG, "Exception when querying images", exception)
-                return@addSnapshotListener
-            }
-            val imageList = snapshot.toObjects<Image>()
-            _images.value = imageList as MutableList<Image>
-            for (image in imageList) {
-                Log.i(TAG, "Image ${image.fileName}")
-            }
-        }
+//        imagesReference.addSnapshotListener { snapshot, exception ->
+//            if (exception != null || snapshot == null) {
+//                Log.e(TAG, "Exception when querying images", exception)
+//                return@addSnapshotListener
+//            }
+//            val imageList = snapshot.toObjects<Image>()
+//            _images.value = imageList as MutableList<Image>
+//            for (image in imageList) {
+//                Log.i(TAG, "Image ${image.fileName}")
+//            }
+//        }
     }
 
     /**

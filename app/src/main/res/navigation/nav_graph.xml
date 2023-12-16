@@ -89,6 +89,9 @@
         android:name="com.example.final_project.RestaurantScreenFragment"
         android:label="fragment_restaurant_screen"
         tools:layout="@layout/fragment_restaurant_screen" >
+<!--        <argument-->
+<!--            android:name="orderId"-->
+<!--            app:argType="string" />-->
         <action
             android:id="@+id/action_restaurantScreenFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />

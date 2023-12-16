@@ -81,13 +81,6 @@ class OrdersViewModel() : ViewModel() {
     val restaurants: LiveData<List<Restaurant>>
         get() = _restaurants as LiveData<List<Restaurant>>
 
-//    /**
-//     * LiveData representing a list of orders.
-//     */
-//    private val _: MutableLiveData<MutableList<Restaurant>> = MutableLiveData()
-//    val restaurants: LiveData<List<Restaurant>>
-//        get() = _restaurants as LiveData<List<Restaurant>>
-
     /**
      * LiveData for posts
      */
@@ -159,8 +152,6 @@ class OrdersViewModel() : ViewModel() {
         get() = _navigateToSignIn
 
     private val _menuItems = MutableLiveData<List<MenuItem>>()
-
-    // Expose menuItems as LiveData to observe changes
     val menuItems: LiveData<List<MenuItem>> get() = _menuItems
 
     // Populate menuItems with data from _restaurant
@@ -268,11 +259,9 @@ class OrdersViewModel() : ViewModel() {
     /**
      * Adds a new, empty order to the database and navigates to the newly created order.
      */
-    fun addOrder() {
+    fun addOrder(restaurant: Restaurant) {
         Log.d(TAG, "Adding a order")
-        _navigateToOrder.value = ""
-        orderId = ""
-        order.value = Order()
+
     }
 
 
@@ -360,8 +349,20 @@ class OrdersViewModel() : ViewModel() {
     }
 
     fun onRestaurantClicked(selectedRestaurant: Restaurant) {
+        _navigateToOrder.value = "" //todo might need to change
+        orderId = ""
+        order.value = Order(restaurant = selectedRestaurant)
+        restaurant.value = selectedRestaurant
+//        menuItems.value = selectedRestaurant.orderItems
+//        onOrderClicked(order.value!!)
+        Log.d("ViewModel", "${selectedRestaurant.restaurantName} clicked")
+//        addOrder(selectedRestaurant)
         //TODO navigate to restaurant screen with that restaurant
     }
+
+//    fun getMenuItems(restaurant: Restaurant):List<MenuItem> {
+//
+//    }
 
     /**
      * Resets the [navigateToXYZ] LiveData to null after navigating to a desired endpoint

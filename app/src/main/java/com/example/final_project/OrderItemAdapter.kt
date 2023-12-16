@@ -14,7 +14,7 @@ import com.example.final_project.databinding.OrderItemBinding
  * @param clickListener A lambda function to handle item click events.
  * @param deleteClickListener A lambda function to handle item delete click events.
  */
-class OrderItemAdapter(val clickListener: (order: Order) -> Unit)
+class OrderItemAdapter()
     : ListAdapter<Order, OrderItemAdapter.OrderItemViewHolder>(OrderDiffItemCallback()) {
 
     /**
@@ -35,7 +35,7 @@ class OrderItemAdapter(val clickListener: (order: Order) -> Unit)
      */
     override fun onBindViewHolder(holder: OrderItemViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, clickListener)
+        holder.bind(item)
     }
 
     /**
@@ -70,7 +70,7 @@ class OrderItemAdapter(val clickListener: (order: Order) -> Unit)
          *
          * @param item The Order object to bind to the ViewHolder.
          */
-        fun bind(item: Order, clickListener: (order: Order) -> Unit) {
+        fun bind(item: Order) {
             binding.order = item
 
             // Create and set up the inner RecyclerView for menu items

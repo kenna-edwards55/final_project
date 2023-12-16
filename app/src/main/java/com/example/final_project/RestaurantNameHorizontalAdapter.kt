@@ -36,6 +36,7 @@ class RestaurantNameHorizontalAdapter(val clickListener: (order: Order) -> Unit)
     override fun onBindViewHolder(holder: RestaurantNameViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item, clickListener)
+
     }
 
     /**
@@ -74,6 +75,8 @@ class RestaurantNameHorizontalAdapter(val clickListener: (order: Order) -> Unit)
             binding.order = item
 
             binding.restaurantName.text = item.restaurant!!.restaurantName
+
+            binding.root.setOnClickListener { clickListener(item) }
 
             Log.d("HorizontalAdapter", "${item.restaurant!!.restaurantName}")
 

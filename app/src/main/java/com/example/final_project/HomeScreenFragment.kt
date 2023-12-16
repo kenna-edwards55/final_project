@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.final_project.databinding.FragmentHomeScreenBinding
 import com.google.android.material.navigation.NavigationView
@@ -41,8 +42,6 @@ class HomeScreenFragment : Fragment() {
         drawerLayout = binding.drawerLayout
         navView = binding.navView
 
-
-
         val toolbar:Toolbar = binding.toolbar
 
         val toggle = ActionBarDrawerToggle(
@@ -64,12 +63,15 @@ class HomeScreenFragment : Fragment() {
          * Function to handle click on a note.
          */
         fun favoriteClicked (order : Order) {
-//            Log.d("HomeScreen", "in restaurantClicked() : noteId = ${restaurant.restaurantId}")
+            Log.d("HomeScreen", "in restaurantClicked() : noteId = ${order.restaurant!!.restaurantName}")
             viewModel.onRestaurantClicked(order.restaurant!!)
         }
 
         fun restaurantClicked (restaurant: Restaurant) {
+            Log.d("HomeScreen", "in restaurantClicked() : noteId = ${restaurant.restaurantName}")
+            Log.d("Restaurant Screen", "${viewModel.restaurant.value?.menu}")
             viewModel.onRestaurantClicked(restaurant)
+
         }
 
         /**
@@ -90,6 +92,16 @@ class HomeScreenFragment : Fragment() {
             allRestaurantsAdapter.submitList(allRestaurants)
         }
 
+        /**
+         * Navigate to the NoteScreenFragment when a note is clicked.
+         */
+        viewModel.navigateToOrder.observe(viewLifecycleOwner, Observer { orderId ->
+            orderId?.let {
+                val action = HomeScreenFragmentDirections.actionHomeScreenFragmentToRestaurantScreenFragment()
+                this.findNavController().navigate(action)
+                viewModel.onOrderNavigated()
+            }
+        })
 
         return view
     }
@@ -108,12 +120,12 @@ class HomeScreenFragment : Fragment() {
 //            restaurantAddress = "316 E Fourth St Bloomington, IN 47408 United States"
 //        )
 
-        val order = Order(
-            orderRestaurantName = "mcdonalds",
-            orderItems = listOf(MenuItem(itemName = "Fries", itemCost = "$2", itemQuantity = "1"), MenuItem(itemName = "Oreo McFlurry", itemCost = "$3", itemQuantity = "1"), MenuItem(itemName = "Filet O Fish", itemCost = "$5", itemQuantity = "3")),
-            orderDeliveryAddress = "700 N Woodlawn Ave Bloomington, IN 47408 United States",
-            orderSpecialInstructions = "BBQ sauce on the side"
-        )
+//        val order = Order(
+//            orderRestaurantName = "mcdonalds",
+//            orderItems = listOf(MenuItem(itemName = "Fries", itemCost = "$2", itemQuantity = "1"), MenuItem(itemName = "Oreo McFlurry", itemCost = "$3", itemQuantity = "1"), MenuItem(itemName = "Filet O Fish", itemCost = "$5", itemQuantity = "3")),
+//            orderDeliveryAddress = "700 N Woodlawn Ave Bloomington, IN 47408 United States",
+//            orderSpecialInstructions = "BBQ sauce on the side"
+//        )
 
         val currentTimestamp: Long = System.currentTimeMillis()
 

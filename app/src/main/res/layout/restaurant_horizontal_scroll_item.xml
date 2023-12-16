@@ -13,11 +13,12 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/horizontal_cardview"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardElevation="4dp"
-        app:cardCornerRadius="5dp" >
+        app:cardCornerRadius="5dp">
 
         <TextView
             android:id="@+id/restaurant_name"
@@ -26,8 +27,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:padding="8dp"
-            android:text="@{order.restaurant.restaurantName}"
-            android:onClick="@{() -> viewModel.onRestaurantClicked(order.restaurant)}"/>
+            android:text="@{order.restaurant.restaurantName}" />
 
     </androidx.cardview.widget.CardView>
 </layout>

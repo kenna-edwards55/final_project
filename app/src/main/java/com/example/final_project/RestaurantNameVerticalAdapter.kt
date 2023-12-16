@@ -72,8 +72,8 @@ class RestaurantNameVerticalAdapter(val clickListener: (restaurant: Restaurant) 
          */
         fun bind(item: Restaurant, clickListener: (restaurant: Restaurant) -> Unit) {
             binding.restaurant = item
-
             binding.restaurantName.text = item.restaurantName
+            binding.root.setOnClickListener { clickListener(item) }
 
             Log.d("HorizontalAdapter", "${item.restaurantName}")
 

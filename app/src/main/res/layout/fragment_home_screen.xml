@@ -38,10 +38,13 @@
                     android:src="@drawable/search_icon"
                     android:onClick="search"/>
             </androidx.appcompat.widget.Toolbar>
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical">-->
+
+            <TextView
+                android:id="@+id/fav_rest_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="FAVORITE RESTAURANTS" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/favorites_list"
@@ -51,9 +54,17 @@
                 android:layout_margin="10dp"
                 android:layout_weight="2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintTop_toBottomOf="@id/fav_rest_tv"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:spanCount="3" />
+
+<!--            TODO make string resource-->
+            <TextView
+                android:id="@+id/all_rest_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ALL RESTAURANTS" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/all_restaurants_list"
@@ -64,7 +75,7 @@
                 android:layout_weight="2"
                 app:layout_constraintBottom_toBottomOf= "parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/favorites_list"
+                app:layout_constraintTop_toBottomOf="@id/all_rest_tv"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:spanCount="1" />
 

@@ -14,7 +14,6 @@ import java.sql.Timestamp
 data class Order(
     @get:Exclude
     var orderId:String = "",
-    var orderRestaurantName: String = "",
     var restaurant: Restaurant? = null,
     var orderImageCode: String = "",
     var orderItems: List<MenuItem>? = null,

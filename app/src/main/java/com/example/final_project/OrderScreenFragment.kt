@@ -68,13 +68,13 @@ class OrderScreenFragment : Fragment()   {
 
         setupNavigation()
 
-        /**
-         * Function to handle click on a order.
-         */
-        fun orderClicked (order : Order) {
-            Log.d(TAG, "in orderClicked() : orderId = ${order.orderId}")
-            viewModel.onOrderClicked(order)
-        }
+//        /**
+//         * Function to handle click on a order.
+//         */
+//        fun orderClicked (order : Order) {
+//            Log.d(TAG, "in orderClicked() : orderId = ${order.orderId}")
+//            viewModel.onOrderClicked(order)
+//        }
 
 //        fun plusClicked(menuItem:menuItem)
 
@@ -89,7 +89,7 @@ class OrderScreenFragment : Fragment()   {
         /**
          * Creates an adapter for the RecyclerView to handle order items.
          */
-        val adapter = OrderItemAdapter(::orderClicked)
+        val adapter = OrderItemAdapter()
         binding.ordersList.adapter = adapter
 
 //        val menuItemAdapter= MenuItemAdapter()

@@ -16,6 +16,7 @@ data class Restaurant(
     var restaurantImageCode: String = "",
     var restaurantName: String = "",
     var imageUrls: List<String>? = null,
+    var menu: List<MenuItem>? = null,
     var restaurantAddress: String = "",
 )
 

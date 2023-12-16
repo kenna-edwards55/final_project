@@ -152,7 +152,8 @@ class OrdersViewModel() : ViewModel() {
         get() = _navigateToSignIn
 
     private val _menuItems = MutableLiveData<List<MenuItem>>()
-    val menuItems: LiveData<List<MenuItem>> get() = _menuItems
+    val menuItems: LiveData<List<MenuItem>>
+        get() = _menuItems
 
     // Populate menuItems with data from _restaurant
 
@@ -358,6 +359,19 @@ class OrdersViewModel() : ViewModel() {
         Log.d("ViewModel", "${selectedRestaurant.restaurantName} clicked")
 //        addOrder(selectedRestaurant)
         //TODO navigate to restaurant screen with that restaurant
+    }
+
+    fun onPlusButtonClicked(menuItem: MenuItem) {
+        menuItem.itemQuantity = menuItem.itemQuantity+1
+        menuItem.itemCost = (menuItem.itemQuantity.toFloat() * menuItem.itemCost.toFloat()).toString()
+        Log.d("View Model", "plus clicked")
+        // Handle plus button click here
+        // You can perform any logic, such as increasing the quantity or updating UI
+    }
+
+    fun onMinusButtonClicked(menuItem: MenuItem) {
+        // Handle minus button click here
+        // You can perform any logic, such as decreasing the quantity or updating UI
     }
 
 //    fun getMenuItems(restaurant: Restaurant):List<MenuItem> {

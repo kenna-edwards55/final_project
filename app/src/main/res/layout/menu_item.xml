@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".RestaurantScreen">
     <data>
         <variable
             name="menuItem"
             type="com.example.final_project.MenuItem" />
+
+        <variable
+            name="viewModel"
+            type="com.example.final_project.OrdersViewModel" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -79,8 +85,9 @@
                     android:clickable="true"
                     android:layout_margin="5dp"
                     android:layout_gravity="right"
-                    android:visibility="gone"
-                    android:src="@drawable/plus"/>
+                    android:visibility="visible"
+                    android:src="@drawable/plus"
+                    android:onClick="@{() -> viewModel.onPlusButtonClicked(menuItem)}"/>
 
                 <ImageView
                     android:id="@+id/minus_button"
@@ -88,8 +95,9 @@
                     android:layout_height="40dp"
                     android:clickable="true"
                     android:layout_gravity="right"
-                    android:visibility="gone"
-                    android:src="@drawable/minus"/>
+                    android:visibility="visible"
+                    android:src="@drawable/minus"
+                    android:onClick="@{() -> viewModel.onMinusButtonClicked(menuItem)}"/>
             </LinearLayout>
 
         </LinearLayout>

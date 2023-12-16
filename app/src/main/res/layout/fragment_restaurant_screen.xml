@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".RestaurantScreen">
     <data>
-
         <variable
             name="viewModel"
             type="com.example.final_project.OrdersViewModel" />

@@ -1,1 +1,67 @@
-hello world
+# Restaurant Ordering App
+
+Welcome to the Zippy Delivery App! This Android application is designed to provide users with a seamless experience in searching for restaurants, placing orders, and viewing recent orders.
+
+## Features
+
+1. **Navigation Drawer**
+   - The app includes a Navigation Drawer that displays the user's profile picture along with their name and email.
+   - Navigation Drawer buttons:
+     - Home: Takes the user to the main screen.
+     - Recent Orders: Displays a list of all orders placed in the past.
+     - Calendar View: Interactive calendar of their purchases
+     - Sign Out: Logs the user out of the app, destroying the current session.
+
+2. **Home Screen**
+   - The Home Screen is the central hub of the app, featuring a search icon in the App Bar for convenient restaurant searching.
+   - Divided into two fragments (or composables):
+      - **Fragment 1 (Horizontal Scrollable Recent Restaurants)**
+        - Displays recent restaurants in horizontally scrollable card views.
+        - Each card represents a restaurant through which the user has recently ordered.
+        - Clicking on a restaurant card navigates the user to the corresponding Restaurant screen.
+        - A minimum of 5 pre-added recent restaurants is included for testing purposes.
+      - **Fragment 2 (Vertically Scrollable All Restaurants)**
+        - Displays all restaurants in vertically scrollable card views.
+        - Each card represents a restaurant from the main restaurant collection.
+        - Clicking on a restaurant card navigates the user to the corresponding Restaurant screen.
+        - A minimum of 8 pre-added restaurants is included for testing purposes.
+
+3. **Restaurant Screen**
+   - Each restaurant has its own location, ensuring that it is within 50 miles of the user.
+   - The restaurant collection includes the name of the restaurant, its location, and three images stored in Firebase Cloud Storage.
+   - 
+4. **Checkout Screen**
+   - Allows the user to review their order before placing it.
+   - If they choose to modify it, they can go back to the restaurant screen and update their order.
+   - The user can also input their delivery address and special instructions.
+  
+5. **Map Screen**
+   - Shows how far away the order is from the user on a map.
+
+
+## Getting Started
+
+To run the app locally, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Open the project in Android Studio.
+3. Build and run the app on an Android emulator or physical device.
+
+## Dependencies
+
+- [Firebase Firestore](https://firebase.google.com/docs/firestore): Used for storing and retrieving restaurant and order data.
+- [Firebase Cloud Storage](https://firebase.google.com/docs/storage): Used for storing restaurant images.
+- [Android Navigation Component](https://developer.android.com/guide/navigation): Used for navigation between fragments.
+
+  ## Database Links
+  
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or create a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+Happy dining! 🍽️
